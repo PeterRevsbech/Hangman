@@ -1,0 +1,149 @@
+package dk.revsbech.galgeleg.view;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import dk.revsbech.galgeleg.programlogic.HMLogic;
+import dk.revsbech.galgeleg.R;
+
+
+public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
+
+    Button guessButton;
+    HMLogic hmLogic;
+    TextView wordView;
+    TextView info;
+    EditText inputField;
+    ImageView nooseImage;
+    TextView guesses;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.play_akt);
+
+        //Initializing--------------------------------------------------------------
+        // logic object
+        hmLogic = new HMLogic();
+
+        //guess button
+        guessButton=findViewById(R.id.play_guessButton);
+        guessButton.setOnClickListener(this);
+
+        //Input field
+        inputField = findViewById(R.id.play_guessTextEdit);
+        inputField.setOnClickListener(this);
+
+        //Word view
+        wordView = findViewById(R.id.play_WordView);
+        wordView.setText(hmLogic.getVisibleWord());
+
+        //Noose image
+        nooseImage = findViewById(R.id.play_NooseImage);
+
+        //Info text
+        info = findViewById(R.id.play_infoText);
+        info.setText("");
+
+        //Guess list
+        guesses = findViewById(R.id.play_guessesText);
+        guesses.setText(hmLogic.getUsedLetters().toString());
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view == guessButton){
+            String guess = inputField.getText().toString().toLowerCase().substring(0,1);
+            displayMsg(getText(R.string.youguessed) + " "+guess);
+            inputField.setText("");
+
+
+            //Checks if guess is valid
+            String invalidMsg = validateGuess(guess);
+            //If guess is invalid - display and return
+            if (invalidMsg!= null){
+                displayMsg(invalidMsg);
+                return;
+            }
+
+            //If guess was vaild - make guess
+            hmLogic.guessLetter(guess);
+            if (hmLogic.isLastGuessCorrect()){
+                wordView.setText(hmLogic.getVisibleWord());
+            } else{
+                updateNoose();
+            }
+
+            updateGuessList();
+
+        }
+    }
+
+    public void updateGuessList(){
+        guesses.setText(hmLogic.getUsedLetters().toString());
+    }
+
+    public void displayMsg(String msg){
+        info.setText(msg);
+        System.out.println(msg);
+    }
+
+    public void updateNoose(){
+        int wrongGuesses = hmLogic.getNumOfWrongGuesses();
+        switch (wrongGuesses){
+            case 1:
+                nooseImage.setImageResource(R.drawable.forkert1);
+                break;
+            case 2:
+                nooseImage.setImageResource(R.drawable.forkert2);
+                break;
+            case 3:
+                nooseImage.setImageResource(R.drawable.forkert3);
+                break;
+            case 4:
+                nooseImage.setImageResource(R.drawable.forkert4);
+                break;
+            case 5:
+                nooseImage.setImageResource(R.drawable.forkert5);
+                break;
+            case 6:
+                nooseImage.setImageResource(R.drawable.forkert6);
+                break;
+            case 7:
+                gameOver();
+                break;
+        }
+    }
+
+        //Returns errormessage if invalid. Returns null otherwise
+    public String validateGuess(String letter){
+        String invalidMsg = null;
+        char guessChar = letter.toLowerCase().charAt(0);
+        if (hmLogic.isGameWon()){
+            invalidMsg = (String) getText(R.string.alreadyWon);
+        } else if (hmLogic.isGameLost()){
+            invalidMsg = (String) getText(R.string.alreadyLost);
+        } else if (letter.length()!=1){
+            invalidMsg = (String) getText(R.string.onlyGuessOneLetter);
+        } else if (hmLogic.getUsedLetters().contains(letter)){
+            invalidMsg = getText(R.string.alreadyGuessed) + " "+letter;
+        } else if (!((guessChar >= 97 && guessChar<=122)||(guessChar==229||guessChar==230||guessChar==248))){
+            invalidMsg = (String) getText(R.string.invalidGuess);
+        }
+        if (invalidMsg != null) System.out.println(invalidMsg);
+        return invalidMsg;
+    }
+
+    public void gameOver(){
+        displayMsg((String) getText(R.string.youLost));
+        guessButton.setEnabled(false);
+        inputField.setEnabled(false);
+    }
+
+}

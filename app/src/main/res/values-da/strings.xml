@@ -1,0 +1,27 @@
+<resources>
+    <!-- Frontpage-->
+    <string name="app_name">Galgeleg</string>
+    <string name="settings">Indstillinger</string>
+    <string name="highscores">Highscores</string>
+    <string name="play">Spil</string>
+    <string name="titleText">GALGELEG</string>
+
+
+    <!-- in play messages-->
+    <string name="yourGuess">Dit gæt</string>
+    <string name="onlyGuessOneLetter">Du må kun gætte på ET bogstav</string>
+    <string name="alreadyGuessed">Du har allerede gættet på: </string>
+    <string name="alreadyWon">Du har allerede vundet!</string>
+    <string name="alreadyLost">Du har allerede tabt!</string>
+    <string name="invalidGuess">Ugyldigt gæt!</string>
+    <string name="play_titletext">Du spiller galgeleg</string>
+    <string name="makeguess">Gæt!</string>
+    <string name="youguessed">Du gættede: </string>
+    <string name="youWon">Du vandt!!</string>
+    <string name="youLost">Du tabte!</string>
+
+    <!-- Settings -->
+    <string name="language">Sprog</string>
+    <string name="saveChanges">Gem ændringer</string>
+
+</resources>
