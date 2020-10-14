@@ -7,13 +7,14 @@
     tools:context=".view.PlayAkt">
 
     <TextView
-        android:id="@+id/play_TitleText"
+        android:id="@+id/play_infoText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
-        android:text="@string/play_titletext"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginBottom="272dp"
+        android:text="Some Message-Text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/play_NooseImage"

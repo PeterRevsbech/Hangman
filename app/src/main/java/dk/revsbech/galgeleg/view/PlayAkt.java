@@ -30,8 +30,8 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.play_akt);
 
         //Initializing--------------------------------------------------------------
-        // logic object
-        hmLogic = new HMLogic();
+        // logic object (singleton)
+        hmLogic = HMLogic.getInstance();
 
         //guess button
         guessButton=findViewById(R.id.play_guessButton);
@@ -52,6 +52,10 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
         guesses = findViewById(R.id.play_guessesText);
         guesses.setText(hmLogic.getUsedLetters().toString());
 
+        ///Info text
+        info = findViewById(R.id.play_infoText);
+        info.setText("");
+
         //Cheat word Text View
         TextView cheatWordTV = findViewById(R.id.CheatWordTextView);
         cheatWordTV.setText(hmLogic.getSecretWord());
@@ -60,7 +64,9 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if (view == guessButton){
-            String guess = inputField.getText().toString().toLowerCase().substring(0,1);
+            String unprocessedGuess = inputField.getText().toString();
+            if (unprocessedGuess.length()==0){return;}
+            String guess = unprocessedGuess.toLowerCase().substring(0,1);
             displayMsg(getText(R.string.youguessed) + " "+guess);
             inputField.setText("");
 

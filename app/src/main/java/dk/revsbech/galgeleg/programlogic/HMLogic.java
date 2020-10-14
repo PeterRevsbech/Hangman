@@ -1,7 +1,10 @@
 package dk.revsbech.galgeleg.programlogic;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+
+import dk.revsbech.galgeleg.backend.SheetReader;
 
 public class HMLogic {
 
@@ -14,18 +17,34 @@ public class HMLogic {
     private boolean lastGuessCorrect;
     private boolean gameWon;
     private boolean gameLost;
+    private static HMLogic single_instance =null;
 
-    public HMLogic() {
-        wordList.add("bil");
-        wordList.add("computer");
-        wordList.add("programmering");
-        wordList.add("motorvej");
-        wordList.add("busrute");
-        wordList.add("gangsti");
-        wordList.add("skovsnegl");
-        wordList.add("solsort");
-        wordList.add("tyve");
-        startNewGame();
+    private HMLogic() {
+
+        SheetReader sr = SheetReader.getInstance();
+        try{
+            sr.addWords(wordList);
+
+        } catch (IOException e){
+            e.printStackTrace();
+            //backup words if reading the google sheet fails
+            wordList.add("bil");
+            wordList.add("computer");
+            wordList.add("programmering");
+            wordList.add("motorvej");
+            wordList.add("busrute");
+            wordList.add("gangsti");
+            wordList.add("skovsnegl");
+            wordList.add("solsort");
+            wordList.add("tyve");
+        }
+    }
+
+    public static HMLogic getInstance(){
+        if(single_instance==null){
+            single_instance = new HMLogic();
+        }
+        return single_instance;
     }
 
 
@@ -111,5 +130,7 @@ public class HMLogic {
         }
         updateVisibleWord();
     }
+
+
 
 }

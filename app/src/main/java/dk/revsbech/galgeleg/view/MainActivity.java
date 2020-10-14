@@ -7,10 +7,16 @@ import androidx.fragment.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
 import dk.revsbech.galgeleg.R;
+import dk.revsbech.galgeleg.programlogic.HMLogic;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -27,12 +33,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         hsButton = findViewById(R.id.hsButton);
 
         playButton.setOnClickListener(this);
+        playButton.setEnabled(false);
         settingsButton.setOnClickListener(this);
         hsButton.setOnClickListener(this);
 
-
-
-
+        //Create HMlogic object in background thread
+        Executor bgThread = Executors.newSingleThreadExecutor();
+        Handler uiThread = new Handler();
+        bgThread.execute(() ->{
+            System.out.println("Creating HMLogic");
+            HMLogic.getInstance();
+            uiThread.post(()->{
+                playButton.setEnabled(true);
+            });
+        });
 
 
     }
@@ -40,7 +54,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if (view == playButton){
+            //Start new game, when starting the activity
+            HMLogic.getInstance().startNewGame();
+
+            //Switch activity
             Intent i = new Intent(this,PlayAkt.class);
+            i.setFlags(i.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY); // Adds the FLAG_ACTIVITY_NO_HISTORY flag
             startActivity(i);
         } else if (view == settingsButton){
             /*
