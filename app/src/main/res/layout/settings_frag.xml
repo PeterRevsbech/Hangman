@@ -6,40 +6,41 @@
     android:layout_height="match_parent"
     tools:context=".view.SettingsFrag">
 
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
 
-    <Spinner
-        android:id="@+id/languageSpinner"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="224dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginRight="1dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/Settings_DanishButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dansk" />
 
-    <TextView
-        android:id="@+id/languageSelectText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="119dp"
-        android:layout_marginLeft="119dp"
-        android:layout_marginBottom="17dp"
-        android:text="@string/language"
-        app:layout_constraintBottom_toTopOf="@+id/languageSpinner"
-        app:layout_constraintStart_toStartOf="@+id/languageSpinner" />
+        <Button
+            android:id="@+id/Settings_EnglishButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="English" />
 
-    <Button
-        android:id="@+id/saveChangesButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="63dp"
-        android:text="@string/saveChanges"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <Button
+            android:id="@+id/Settings_SaveButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save/Gem" />
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+        <Spinner
+            android:id="@+id/languageSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

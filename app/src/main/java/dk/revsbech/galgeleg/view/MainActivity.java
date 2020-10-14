@@ -62,17 +62,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             i.setFlags(i.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY); // Adds the FLAG_ACTIVITY_NO_HISTORY flag
             startActivity(i);
         } else if (view == settingsButton){
-            /*
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
             Fragment fragment = new SettingsFrag();
-            fragmentTransaction.add(R.id.settingsFrag,fragment).commit();
-
-
-             */
-
-
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.Main_SettingsFragFL, fragment)  // tom container i layout
+                    .addToBackStack(null).commit();
 
 
 

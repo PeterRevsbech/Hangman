@@ -3,6 +3,7 @@ package dk.revsbech.galgeleg.view;
 
 import dk.revsbech.galgeleg.R;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -19,17 +20,21 @@ import androidx.fragment.app.Fragment;
 
 import java.util.Locale;
 
-public class SettingsFrag extends Fragment implements AdapterView.OnItemSelectedListener, View.OnClickListener {
+public class SettingsFrag extends Fragment implements View.OnClickListener {
     Spinner languageSpinner;
     Locale locale;
     String languageSelected;
-    Button saveChangesButton;
+    String[] languages_array = {"Dansk (DK)", "English (EN)","A","B","C"};
+    Button danishButton, englishButton, saveChangesButton;
 
 
-    public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceStat){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+        /*
         View root = i.inflate(R.layout.settings_frag,container,false);
         saveChangesButton = root.findViewById(R.id.saveChangesButton);
         saveChangesButton.setOnClickListener(this);
+
+         */
 
 
         /*
@@ -47,8 +52,15 @@ public class SettingsFrag extends Fragment implements AdapterView.OnItemSelected
         //-----------------------------
 
          */
+        View root = inflater.inflate(R.layout.settings_frag,container,false);
+        danishButton = root.findViewById(R.id.Settings_DanishButton);
+        danishButton.setOnClickListener(this);
+        englishButton = root.findViewById(R.id.Settings_EnglishButton);
+        englishButton.setOnClickListener(this);
+        saveChangesButton = root.findViewById(R.id.Settings_SaveButton);
+        saveChangesButton.setOnClickListener(this);
 
-        return root;
+        return inflater.inflate(R.layout.settings_frag, container, false);
     }
 
 
@@ -63,7 +75,7 @@ public class SettingsFrag extends Fragment implements AdapterView.OnItemSelected
         refresh.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(refresh);
     }
-
+/*
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         String selection = (String) adapterView.getSelectedItem();
@@ -78,16 +90,22 @@ public class SettingsFrag extends Fragment implements AdapterView.OnItemSelected
 
     }
 
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
+ */
 
-    }
+
 
     @Override
     public void onClick(View view) {
         if (view ==saveChangesButton){
             System.out.println("Save button pressed");
             setLocale(languageSelected);
+        } else if (view == danishButton){
+            System.out.println("Danish chosen");
+            languageSelected = "da-dk";
+        } else if (view == englishButton){
+            System.out.println("English chosen");
+            languageSelected="en";
         }
+
     }
 }

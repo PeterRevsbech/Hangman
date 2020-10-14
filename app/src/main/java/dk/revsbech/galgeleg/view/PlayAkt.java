@@ -16,13 +16,14 @@ import dk.revsbech.galgeleg.R;
 
 public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
 
-    Button guessButton;
+    Button guessButton, cheatButton;
     HMLogic hmLogic;
     TextView wordView;
     TextView info;
     EditText inputField;
     ImageView nooseImage;
     TextView guesses;
+    TextView cheatWordTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +57,12 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
         info = findViewById(R.id.play_infoText);
         info.setText("");
 
+        //Cheat button
+        cheatButton = findViewById(R.id.CheatButton);
+        cheatButton.setOnClickListener(this);
+
         //Cheat word Text View
-        TextView cheatWordTV = findViewById(R.id.CheatWordTextView);
-        cheatWordTV.setText(hmLogic.getSecretWord());
+        cheatWordTV = findViewById(R.id.CheatWordTextView);
     }
 
     @Override
@@ -101,6 +105,8 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
 
 
 
+        } else if (view==cheatButton){
+            cheatWordTV.setText(hmLogic.getSecretWord());
         }
     }
 

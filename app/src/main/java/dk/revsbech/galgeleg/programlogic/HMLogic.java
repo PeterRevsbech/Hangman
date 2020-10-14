@@ -23,7 +23,7 @@ public class HMLogic {
 
         SheetReader sr = SheetReader.getInstance();
         try{
-            sr.addWords(wordList);
+            sr.addWords(wordList,null);
 
         } catch (IOException e){
             e.printStackTrace();
@@ -38,6 +38,16 @@ public class HMLogic {
             wordList.add("solsort");
             wordList.add("tyve");
         }
+    }
+
+    public void loadNewWords(String category){
+        wordList= new ArrayList<String>();
+        try {
+            SheetReader.getInstance().readSheet(category);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
     }
 
     public static HMLogic getInstance(){

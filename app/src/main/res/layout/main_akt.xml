@@ -58,6 +58,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/highscores" />
+
     </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/Main_SettingsFragFL"
+        android:layout_width="277dp"
+        android:layout_height="732dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
