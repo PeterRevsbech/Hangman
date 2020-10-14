@@ -2,6 +2,7 @@ package dk.revsbech.galgeleg.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -47,13 +48,13 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
         //Noose image
         nooseImage = findViewById(R.id.play_NooseImage);
 
-        //Info text
-        info = findViewById(R.id.play_infoText);
-        info.setText("");
-
         //Guess list
         guesses = findViewById(R.id.play_guessesText);
         guesses.setText(hmLogic.getUsedLetters().toString());
+
+        //Cheat word Text View
+        TextView cheatWordTV = findViewById(R.id.CheatWordTextView);
+        cheatWordTV.setText(hmLogic.getSecretWord());
     }
 
     @Override
@@ -80,7 +81,19 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
                 updateNoose();
             }
 
-            updateGuessList();
+            //If game is won
+            if (hmLogic.isGameWon()){
+                gameWon();
+            } else
+            //If game is lost
+            if (hmLogic.isGameLost()){
+                gameOver();
+            }
+            else{
+                updateGuessList();
+            }
+
+
 
         }
     }
@@ -116,7 +129,7 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
                 nooseImage.setImageResource(R.drawable.forkert6);
                 break;
             case 7:
-                gameOver();
+
                 break;
         }
     }
@@ -141,9 +154,22 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void gameOver(){
+        //TODO remove this
         displayMsg((String) getText(R.string.youLost));
         guessButton.setEnabled(false);
         inputField.setEnabled(false);
+
+        Intent i = new Intent(this,GameOverAkt.class);
+        i.putExtra("SecretWord",hmLogic.getSecretWord());
+        startActivity(i);
     }
+
+    public void gameWon(){
+        Intent i = new Intent(this,GameWonAkt.class);
+        i.putExtra("SecretWord",hmLogic.getSecretWord());
+        i.putExtra("NumOfGuesses",hmLogic.getNumOfWrongGuesses());
+        startActivity(i);
+    }
+
 
 }

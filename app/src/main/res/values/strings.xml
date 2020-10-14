@@ -25,5 +25,12 @@
     <string name="language">Language</string>
     <string name="saveChanges">Save changes</string>
 
+    <!-- Game Won-->
+    <string name="GzText">Congratulations! You guessed the word</string>
+    <string name="YouGuessed">You guessed the word</string>
+    <string name="InGuesses">With %s incorrect guesses</string>
+    <string name="InOneGuess">With 1 incorrect guess</string>
+    <string name="didntguessword">You didn\'t guess the word</string>
+
 
 </resources>

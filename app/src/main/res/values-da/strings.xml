@@ -24,4 +24,12 @@
     <string name="language">Sprog</string>
     <string name="saveChanges">Gem ændringer</string>
 
+    <!-- Game Won-->
+    <string name="GzText">Tillykke! Du gættede ordet</string>
+    <string name="YouGuessed">Du gættede ordet</string>
+    <string name="InGuesses">Med %s forkerte gæt</string>
+    <string name="InOneGuess">Med 1 forkert gæt</string>
+    <string name="didntguessword">Du gættede ikke ordet</string>
+
+
 </resources>

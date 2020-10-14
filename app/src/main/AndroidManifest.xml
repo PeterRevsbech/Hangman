@@ -9,9 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.AndroidLocalize"></activity>
+        <activity android:name=".view.GameOverAkt"></activity>
+        <activity android:name=".view.GameWonAkt" />
+        <activity android:name=".view.AndroidLocalize" />
         <activity android:name=".view.HsAkt" />
-        <activity android:name=".view.SettingsFrag" />
         <activity android:name=".view.PlayAkt" />
         <activity android:name=".view.MainActivity">
             <intent-filter>
