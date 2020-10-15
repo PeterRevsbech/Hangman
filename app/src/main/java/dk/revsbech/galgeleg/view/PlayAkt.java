@@ -24,11 +24,15 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
     ImageView nooseImage;
     TextView guesses;
     TextView cheatWordTV;
+    String gameMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.play_akt);
+
+        //Set gamemode
+        gameMode = getIntent().getStringExtra("gameMode");
 
         //Initializing--------------------------------------------------------------
         // logic object (singleton)
@@ -166,13 +170,9 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void gameOver(){
-        //TODO remove this
-        displayMsg((String) getText(R.string.youLost));
-        guessButton.setEnabled(false);
-        inputField.setEnabled(false);
-
         Intent i = new Intent(this,GameOverAkt.class);
         i.putExtra("SecretWord",hmLogic.getSecretWord());
+        i.putExtra("gameMode",gameMode);
         startActivity(i);
     }
 
@@ -180,6 +180,7 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
         Intent i = new Intent(this,GameWonAkt.class);
         i.putExtra("SecretWord",hmLogic.getSecretWord());
         i.putExtra("NumOfGuesses",hmLogic.getNumOfWrongGuesses());
+        i.putExtra("gameMode",gameMode);
         startActivity(i);
     }
 

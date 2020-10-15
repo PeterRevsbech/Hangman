@@ -1,6 +1,7 @@
 package dk.revsbech.galgeleg.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.widget.TextView;
@@ -29,6 +30,14 @@ public class GameWonAkt extends AppCompatActivity {
             wrongGuesses.setText(getString(R.string.InOneGuess));
         }else{
             wrongGuesses.setText(String.format(wrongGuesses.getText().toString(),wrongGuessesInt));
+        }
+
+
+        if (getIntent().getStringExtra("gameMode").equals("challenge")){
+            Fragment fragment = new GameWon_CMfrag();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.GameWon_ChallengeModeFL, fragment)  // Empty container in layout
+                    .commit();
         }
 
 

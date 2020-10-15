@@ -2,13 +2,10 @@ package dk.revsbech.galgeleg.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.SystemClock;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,11 +16,12 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import dk.revsbech.galgeleg.R;
+import dk.revsbech.galgeleg.programlogic.ChallengeModeLogic;
 import dk.revsbech.galgeleg.programlogic.HMLogic;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
-    Button playButton, settingsButton, hsButton;
+    Button singleGameButton, settingsButton, hsButton, challengeModeButton;
     Spinner categorySpinner;
 
 
@@ -32,14 +30,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_akt);
 
-        playButton = findViewById(R.id.playButton);
-        settingsButton = findViewById(R.id.settingsButton);
-        hsButton = findViewById(R.id.hsButton);
+        singleGameButton = findViewById(R.id.singleGameButton);
+        singleGameButton.setOnClickListener(this);
+        singleGameButton.setEnabled(false);
 
-        playButton.setOnClickListener(this);
-        playButton.setEnabled(false);
+        settingsButton = findViewById(R.id.settingsButton);
         settingsButton.setOnClickListener(this);
+
+        hsButton = findViewById(R.id.hsButton);
         hsButton.setOnClickListener(this);
+
+        challengeModeButton = findViewById(R.id.challengeModeButton);
+        challengeModeButton.setOnClickListener(this);
 
 
         //Create HMlogic object in background thread
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             System.out.println("Creating HMLogic");
             HMLogic.getInstance();
             uiThread.post(()->{
-                playButton.setEnabled(true); //Can only play when logic object is instantiated
+                singleGameButton.setEnabled(true); //Can only play when logic object is instantiated
             });
         });
 
@@ -78,13 +80,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        if (view == playButton){
+        if (view == singleGameButton){
             //Start new game, when starting the activity
             HMLogic.getInstance().startNewGame();
 
             //Switch activity
             Intent i = new Intent(this,PlayAkt.class);
             i.setFlags(i.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY); // Adds the FLAG_ACTIVITY_NO_HISTORY flag
+            i.putExtra("gameMode","single");
             startActivity(i);
         } else if (view == settingsButton){
 
@@ -99,6 +102,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent i = new Intent(this,HsAkt.class);
             startActivity(i);
 
+        } else if (view == challengeModeButton){
+            //Start new game, when starting the activity
+            HMLogic.getInstance().startNewGame();
+
+            //Reset ChallengeMode object
+            ChallengeModeLogic cml = ChallengeModeLogic.getInstance();
+            cml.reset(HMLogic.getInstance().getCategory());
+
+            //Switch activity
+            Intent i = new Intent(this,PlayAkt.class);
+            i.setFlags(i.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY); // Adds the FLAG_ACTIVITY_NO_HISTORY flag
+            i.putExtra("gameMode","challenge");
+            startActivity(i);
+
         }
     }
 
@@ -106,14 +123,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
         String selection = (String) adapterView.getSelectedItem();
-        playButton.setEnabled(false);
+        singleGameButton.setEnabled(false);
 
         Executor bgThread = Executors.newSingleThreadExecutor();
         Handler uiThread = new Handler();
         bgThread.execute(() ->{
             HMLogic.getInstance().switchCategory(selection);
             uiThread.post(()->{
-                playButton.setEnabled(true);
+                singleGameButton.setEnabled(true);
             });
         });
     }

@@ -3,8 +3,10 @@
     <string name="app_name">Galgeleg</string>
     <string name="settings">Indstillinger</string>
     <string name="highscores">Highscores</string>
-    <string name="play">Spil</string>
+    <string name="single_game">Enkelt spil</string>
     <string name="titleText">GALGELEG</string>
+    <string name="category">Kategori</string>
+    <string name="challenge_mode">Udfordring</string>
 
 
     <!-- in play messages-->
@@ -31,6 +33,8 @@
     <string name="InGuesses">Med %s forkerte gæt</string>
     <string name="InOneGuess">Med 1 forkert gæt</string>
     <string name="didntguessword">Du gættede ikke ordet</string>
+    <string name="yourstreakis">Din streak er</string>
+    <string name="nextword">Næste ord</string>
 
 
 </resources>

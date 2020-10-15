@@ -3,8 +3,10 @@
     <string name="app_name">Hangman</string>
     <string name="settings">Settings</string>
     <string name="highscores">Highscores</string>
-    <string name="play">Play</string>
+    <string name="single_game">Enkelt spil</string>
     <string name="titleText">HANGMAN</string>
+    <string name="category">Category</string>
+    <string name="challenge_mode">Challenge Mode</string>
 
 
     <!-- in play messages-->
@@ -32,7 +34,8 @@
     <string name="InGuesses">With %s incorrect guesses</string>
     <string name="InOneGuess">With 1 incorrect guess</string>
     <string name="didntguessword">You didn\'t guess the word</string>
-
+    <string name="yourstreakis">Your streak is</string>
+    <string name="nextword">Next Word</string>
 
     <!-- Settings-->
     <string-array name="languages_array">
@@ -45,6 +48,8 @@
         <item>Mixed danish words</item>
         <item>Danish cities</item>
     </string-array>
+
+
 
 
 </resources>

@@ -18,6 +18,7 @@ public class HMLogic {
     private boolean gameWon;
     private boolean gameLost;
     private static HMLogic single_instance =null;
+    private String category = "Default";
 
     private HMLogic() {
 
@@ -144,9 +145,14 @@ public class HMLogic {
     public void switchCategory(String newCategory){
         try {
             wordList = SheetReader.getInstance().readSheet(newCategory);
+            this.category=newCategory;
         } catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    public String getCategory(){
+        return this.category;
     }
 
 

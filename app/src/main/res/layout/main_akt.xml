@@ -42,10 +42,16 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView">
 
         <Button
-            android:id="@+id/playButton"
+            android:id="@+id/singleGameButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/play" />
+            android:text="@string/single_game" />
+
+        <Button
+            android:id="@+id/challengeModeButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/challenge_mode" />
 
         <Button
             android:id="@+id/settingsButton"
@@ -58,6 +64,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/highscores" />
+
+        <TextView
+            android:id="@+id/MainCategoryText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/category" />
 
         <Spinner
             android:id="@+id/categorySpinner"
