@@ -9,11 +9,28 @@ import java.util.HashMap;
 
 public class SheetReader {
     String id = "1pQ2xRRJARb6YaTsmYPoUsni_QbM3efr9HQ0ojp8fcNA";
-    String data;
+    //ArrayList<String> words;
+    String currentCategory = null;
+    String defaultCategory = "Default";
     String[] categories;
-    HashMap<String,String[]> words;
+    HashMap<String,ArrayList<String>> words = new HashMap<String,ArrayList<String>>();
     private static SheetReader single_instance=null;
 
+    private SheetReader(){
+        try{
+            categories=readCategories();
+            //Creates entry in words-hasmap for each category
+            for (int i = 0; i < categories.length; i++) {
+                words.put(categories[i],null);
+            }
+            readSheet(defaultCategory);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+
+
+    }
 
     public static SheetReader getInstance(){
         if (single_instance == null){
@@ -22,10 +39,17 @@ public class SheetReader {
         return single_instance;
     }
 
-    public void readSheet() throws IOException {
-        String sheetName = "Ark2";
+
+
+    public ArrayList<String> readSheet(String sheetName) throws IOException {
+        if (sheetName==null){sheetName = defaultCategory;}
         String url = "https://docs.google.com/spreadsheets/d/"+id+"/gviz/tq?tqx=out:csv&sheet="+sheetName;
-        //String url = "https://docs.google.com/spreadsheets/d/" + id + "/export?format=csv&sheet=" + "902668846";
+
+        //If category is already loaded - return words
+        if (words.get(sheetName)!=null){
+            return words.get(sheetName);
+        } //Otherwise - proceed with loading
+
         System.out.println("Getting data from " + url);
 
         BufferedReader br = new BufferedReader(new InputStreamReader(new URL(url).openStream()));
@@ -38,21 +62,24 @@ public class SheetReader {
             String word = splitString[1];
             sb.append(word+"\n");
         }
-        data = sb.toString();
-    }
+        String data = sb.toString();
 
-    public void addWords(ArrayList<String> wordList, String category) throws IOException {
-        readSheet(category);
         String[] splitData = data.split("\n");
+        ArrayList<String> result = new ArrayList<String>(splitData.length);
         for (int i = 0; i < splitData.length; i++) {
-            wordList.add(splitData[i].toLowerCase());
+            result.add(splitData[i].toLowerCase());
         }
+
+        words.put(sheetName,result);
+        return result;
     }
 
 
-    public void readSheet(String sheetName) throws IOException {
-        if (sheetName==null){sheetName = "Ark1";}
-        String url = "https://docs.google.com/spreadsheets/d/"+id+"/gviz/tq?tqx=out:csv&sheet="+sheetName;
+    public String[] readCategories() throws IOException{
+        if (categories!=null){
+            return categories;
+        }
+        String url = "https://docs.google.com/spreadsheets/d/"+id+"/gviz/tq?tqx=out:csv&sheet="+"Categories";
 
         System.out.println("Getting data from " + url);
 
@@ -66,9 +93,12 @@ public class SheetReader {
             String word = splitString[1];
             sb.append(word+"\n");
         }
-        data = sb.toString();
-
-
+        String categoriesData = sb.toString();
+        categories= categoriesData.split("\n");
+        return categories;
+    }
+    public String[] getCategories(){
+        return this.categories;
     }
 
 

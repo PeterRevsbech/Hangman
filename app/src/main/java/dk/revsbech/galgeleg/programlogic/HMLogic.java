@@ -22,8 +22,10 @@ public class HMLogic {
     private HMLogic() {
 
         SheetReader sr = SheetReader.getInstance();
+
         try{
-            sr.addWords(wordList,null);
+            sr.readCategories();
+            wordList =sr.readSheet(null);
 
         } catch (IOException e){
             e.printStackTrace();
@@ -40,15 +42,6 @@ public class HMLogic {
         }
     }
 
-    public void loadNewWords(String category){
-        wordList= new ArrayList<String>();
-        try {
-            SheetReader.getInstance().readSheet(category);
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-
-    }
 
     public static HMLogic getInstance(){
         if(single_instance==null){
@@ -108,7 +101,11 @@ public class HMLogic {
         gameWon = true;
         for (int n = 0; n < secretWord.length(); n++) {
             String letter = secretWord.substring(n, n + 1);
-            if (usedLetters.contains(letter)) {
+            if (letter.equals("-")){
+                visibleWord=visibleWord+"-";
+            } else if (letter.equals(" ")){
+                visibleWord = visibleWord+" ";
+            } else if (usedLetters.contains(letter)) {
                 visibleWord = visibleWord + letter;
             } else {
                 visibleWord = visibleWord + "*";
@@ -139,6 +136,17 @@ public class HMLogic {
             }
         }
         updateVisibleWord();
+    }
+    public String[] getCategories(){
+        return SheetReader.getInstance().getCategories();
+    }
+
+    public void switchCategory(String newCategory){
+        try {
+            wordList = SheetReader.getInstance().readSheet(newCategory);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
 

@@ -23,6 +23,7 @@
     <!-- Settings -->
     <string name="language">Sprog</string>
     <string name="saveChanges">Gem ændringer</string>
+    <string name="lanugage">Sprog</string>
 
     <!-- Game Won-->
     <string name="GzText">Tillykke! Du gættede ordet</string>

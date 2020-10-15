@@ -24,6 +24,7 @@
     <!-- Settings -->
     <string name="language">Language</string>
     <string name="saveChanges">Save changes</string>
+    <string name="lanugage">Language</string>
 
     <!-- Game Won-->
     <string name="GzText">Congratulations! You guessed the word</string>
@@ -32,16 +33,17 @@
     <string name="InOneGuess">With 1 incorrect guess</string>
     <string name="didntguessword">You didn\'t guess the word</string>
 
+
     <!-- Settings-->
     <string-array name="languages_array">
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
-        <item>Mars</item>
-        <item>Jupiter</item>
-        <item>Saturn</item>
-        <item>Uranus</item>
-        <item>Neptune</item>
+        <item>Dansk</item>
+        <item>English</item>
+    </string-array>
+
+    <!-- Categories-->
+    <string-array name="categories_array">
+        <item>Mixed danish words</item>
+        <item>Danish cities</item>
     </string-array>
 
 

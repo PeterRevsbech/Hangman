@@ -20,47 +20,30 @@ import androidx.fragment.app.Fragment;
 
 import java.util.Locale;
 
-public class SettingsFrag extends Fragment implements View.OnClickListener {
+public class SettingsFrag extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     Spinner languageSpinner;
     Locale locale;
-    String languageSelected;
-    String[] languages_array = {"Dansk (DK)", "English (EN)","A","B","C"};
-    Button danishButton, englishButton, saveChangesButton;
+    String languageSelected= "da-dk";
+    Button saveChangesButton;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        /*
-        View root = i.inflate(R.layout.settings_frag,container,false);
-        saveChangesButton = root.findViewById(R.id.saveChangesButton);
-        saveChangesButton.setOnClickListener(this);
 
-         */
-
-
-        /*
-        //These lines are borrowed from https://www.javatpoint.com/android-spinner-example-------------------
-        //Getting the instance of Spinner and applying OnItemSelectedListener on it
-        languageSpinner= (Spinner) root.findViewById(R.id.languageSpinner);
-        languageSpinner.setOnItemSelectedListener(this);
-
-        //Creating the ArrayAdapter instance having the country list
-        String[] languages = {"Dansk","English"};
-        ArrayAdapter aa = new ArrayAdapter(this.getActivity(),android.R.layout.simple_spinner_item,languages);
-        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //Setting the ArrayAdapter data on the Spinner
-        languageSpinner.setAdapter(aa);
-        //-----------------------------
-
-         */
         View root = inflater.inflate(R.layout.settings_frag,container,false);
-        danishButton = root.findViewById(R.id.Settings_DanishButton);
-        danishButton.setOnClickListener(this);
-        englishButton = root.findViewById(R.id.Settings_EnglishButton);
-        englishButton.setOnClickListener(this);
         saveChangesButton = root.findViewById(R.id.Settings_SaveButton);
         saveChangesButton.setOnClickListener(this);
 
-        return inflater.inflate(R.layout.settings_frag, container, false);
+        languageSpinner = (Spinner) root.findViewById(R.id.languageSpinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(),
+                R.array.languages_array, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        languageSpinner.setAdapter(adapter);
+        languageSpinner.setOnItemSelectedListener(this);
+
+        return root;
     }
 
 
@@ -75,7 +58,7 @@ public class SettingsFrag extends Fragment implements View.OnClickListener {
         refresh.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(refresh);
     }
-/*
+
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         String selection = (String) adapterView.getSelectedItem();
@@ -83,15 +66,17 @@ public class SettingsFrag extends Fragment implements View.OnClickListener {
         if (selection.equals("Dansk")){
             languageSelected ="da-dk";
             System.out.println("Danish selected");
-        } else {
+        } else if (selection.equals("English")){
             languageSelected ="en";
             System.out.println("English selected");
         }
 
     }
 
- */
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
 
 
     @Override
@@ -99,13 +84,6 @@ public class SettingsFrag extends Fragment implements View.OnClickListener {
         if (view ==saveChangesButton){
             System.out.println("Save button pressed");
             setLocale(languageSelected);
-        } else if (view == danishButton){
-            System.out.println("Danish chosen");
-            languageSelected = "da-dk";
-        } else if (view == englishButton){
-            System.out.println("English chosen");
-            languageSelected="en";
         }
-
     }
 }

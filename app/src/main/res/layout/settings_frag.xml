@@ -7,23 +7,22 @@
     tools:context=".view.SettingsFrag">
 
     <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="729dp"
+        android:id="@+id/linearLayout3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginBottom="1dp"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
+        android:background="@color/settings"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/Settings_DanishButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Dansk" />
-
-        <Button
-            android:id="@+id/Settings_EnglishButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="English" />
 
         <Button
             android:id="@+id/Settings_SaveButton"
@@ -32,10 +31,10 @@
             android:text="Save/Gem" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/SelLanguageTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="@string/language" />
 
         <Spinner
             android:id="@+id/languageSpinner"

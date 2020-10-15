@@ -34,10 +34,6 @@ public class SettingsAkt extends AppCompatActivity implements View.OnClickListen
         languageSpinner.setAdapter(aa);
          */
 
-        danishButton = findViewById(R.id.Settings_DanishButton);
-        danishButton.setOnClickListener(this);
-        englishButton = findViewById(R.id.Settings_EnglishButton);
-        englishButton.setOnClickListener(this);
         saveButton = findViewById(R.id.Settings_SaveButton);
         saveButton.setOnClickListener(this);
 
