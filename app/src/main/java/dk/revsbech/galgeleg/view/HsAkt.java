@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 
-public class HsAkt extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class HsAkt extends AppCompatActivity implements AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener {
 
     Spinner categorySpinner;
     @Override
@@ -32,23 +32,17 @@ public class HsAkt extends AppCompatActivity implements AdapterView.OnItemSelect
         categorySpinner.setAdapter(adapter);
         categorySpinner.setOnItemSelectedListener(this);
 
-/*
-        //Setup Listview
         String[] lande = {"Danmark", "Norge", "Sverige", "Finland", "Holland", "Italien", "Tyskland",
                 "Frankrig", "Spanien", "Portugal", "Nepal", "Indien", "Kina", "Japan", "Thailand"};
 
-        ArrayAdapter ListViewAdapter = new ArrayAdapter(this, R.layout.hslistelem, R.id.HSListName, lande);
+        ArrayAdapter hsAdapter = new ArrayAdapter(this, R.layout.hslistelem, R.id.HSListName, lande);
 
         ListView listView = new ListView(this);
         listView.setOnItemClickListener(this);
-        listView.setAdapter(ListViewAdapter);
+        listView.setAdapter(hsAdapter);
+
 
         setContentView(listView);
-
- */
-
-
-
     }
 
     @Override
@@ -61,4 +55,8 @@ public class HsAkt extends AppCompatActivity implements AdapterView.OnItemSelect
 
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+    }
 }
