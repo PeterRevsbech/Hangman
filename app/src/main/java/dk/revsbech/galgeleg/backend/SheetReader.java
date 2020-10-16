@@ -19,7 +19,7 @@ public class SheetReader {
     private SheetReader(){
         try{
             categories=readCategories();
-            //Creates entry in words-hasmap for each category
+            //Creates entry in words-hashmap for each category
             for (int i = 0; i < categories.length; i++) {
                 words.put(categories[i],null);
             }

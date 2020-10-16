@@ -49,5 +49,10 @@
     <string name="yourstreakis">Din streak er</string>
     <string name="nextword">Næste ord</string>
 
+    <!-- Game Over-->
+    <string name="finishedWithStreak">Du sluttede med en streak på</string>
+
+
+
 
 </resources>

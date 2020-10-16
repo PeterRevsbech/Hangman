@@ -35,9 +35,6 @@
     <string name="noExitWithoutSave">No. Exit without saving. </string>
 
 
-
-
-
     <!-- Settings -->
     <string name="language">Language</string>
     <string name="saveChanges">Save changes</string>
@@ -52,6 +49,9 @@
     <string name="yourstreakis">Your streak is</string>
     <string name="nextword">Next Word</string>
 
+    <!-- Game Over-->
+    <string name="finishedWithStreak">Your finished with a streak of</string>
+
     <!-- Settings-->
     <string-array name="languages_array">
         <item>Dansk</item>
@@ -63,7 +63,6 @@
         <item>Mixed danish words</item>
         <item>Danish cities</item>
     </string-array>
-
 
 
 

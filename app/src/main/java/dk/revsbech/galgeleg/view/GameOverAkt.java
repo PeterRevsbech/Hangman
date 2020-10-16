@@ -1,6 +1,7 @@
 package dk.revsbech.galgeleg.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.widget.TextView;
@@ -19,6 +20,13 @@ public class GameOverAkt extends AppCompatActivity {
         String secretWordString = getIntent().getStringExtra("SecretWord");
         secretWordTV=findViewById(R.id.GameOverWordTextView);
         secretWordTV.setText(secretWordString);
+
+        if (getIntent().getStringExtra("gameMode").equals("challenge")){
+            Fragment fragment = new GameOver_CMfrag();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.GameOver_ChallengeModeFL, fragment)  // Empty container in layout
+                    .commit();
+        }
 
 
 

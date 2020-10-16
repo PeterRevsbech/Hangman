@@ -155,6 +155,10 @@ public class HMLogic {
         return this.category;
     }
 
+    public void loadWords(){
+
+    }
+
 
 
 }

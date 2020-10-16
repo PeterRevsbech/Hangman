@@ -47,5 +47,12 @@
             android:text="SecretWord"
             android:fontFamily="sans-serif-medium"
             android:textSize="30sp"/>
+
+        <FrameLayout
+            android:id="@+id/GameOver_ChallengeModeFL"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
