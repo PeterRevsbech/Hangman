@@ -1,8 +1,10 @@
 <resources>
     <!-- General-->
-    <string name="yesSure">Yes. I am sure</string>
+    <string name="yesSure">Yes. Exit game</string>
     <string name="no">No</string>
     <string name="dontExit">Don\'t exit</string>
+    <string name="waitForLoad">Loading - Wait a minute</string>
+
 
 
     <!-- Frontpage-->
@@ -29,10 +31,8 @@
     <string name="youLost">You lost!</string>
     <string name="exitOrNot">Exit game</string>
     <string name="sureToExit">Are you sure you want to exit the game? Your progress will be lost</string>
-    <string name="saveStreakCM">Save streak</string>
-    <string name="saveStreakOrNot">Do you want to save your current streak, so you can continue later? Your streak is %d</string>
-    <string name="yesSaveStreak">Yes. Save my streak</string>
-    <string name="noExitWithoutSave">No. Exit without saving. </string>
+    <string name="sureToExitCM">Are you sure you want to exit the game? Your streak of %d will be lost</string>
+
 
 
     <!-- Settings -->

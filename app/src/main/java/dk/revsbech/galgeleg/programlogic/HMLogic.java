@@ -17,30 +17,12 @@ public class HMLogic {
     private boolean lastGuessCorrect;
     private boolean gameWon;
     private boolean gameLost;
+    private boolean loadingDone = false;
     private static HMLogic single_instance =null;
     private String category = "Default";
 
     private HMLogic() {
 
-        SheetReader sr = SheetReader.getInstance();
-
-        try{
-            sr.readCategories();
-            wordList =sr.readSheet(null);
-
-        } catch (IOException e){
-            e.printStackTrace();
-            //backup words if reading the google sheet fails
-            wordList.add("bil");
-            wordList.add("computer");
-            wordList.add("programmering");
-            wordList.add("motorvej");
-            wordList.add("busrute");
-            wordList.add("gangsti");
-            wordList.add("skovsnegl");
-            wordList.add("solsort");
-            wordList.add("tyve");
-        }
     }
 
 
@@ -143,22 +125,46 @@ public class HMLogic {
     }
 
     public void switchCategory(String newCategory){
+        loadingDone=false;
         try {
             wordList = SheetReader.getInstance().readSheet(newCategory);
             this.category=newCategory;
         } catch (IOException e){
             e.printStackTrace();
         }
+        loadingDone=true;
     }
 
     public String getCategory(){
         return this.category;
     }
 
-    public void loadWords(){
+    public void initWithNetwork(){
+        loadingDone=false;
 
+        SheetReader sr = SheetReader.getInstance();
+
+        try{
+            sr.readCategories();
+            wordList =sr.readSheet(null);
+
+        } catch (IOException e){
+            e.printStackTrace();
+            //backup words if reading the google sheet fails
+            wordList.add("bil");
+            wordList.add("computer");
+            wordList.add("programmering");
+            wordList.add("motorvej");
+            wordList.add("busrute");
+            wordList.add("gangsti");
+            wordList.add("skovsnegl");
+            wordList.add("solsort");
+            wordList.add("tyve");
+        }
+        loadingDone=true;
     }
 
-
-
+    public boolean isLoadingDone() {
+        return loadingDone;
+    }
 }

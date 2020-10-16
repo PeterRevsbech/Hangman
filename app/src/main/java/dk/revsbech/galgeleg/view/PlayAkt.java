@@ -188,45 +188,25 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void onBackPressed() {
-        if (gameMode.equals("challenge")) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(getString(R.string.saveStreakCM));
-            String saveOrNot = String.format(getString(R.string.saveStreakOrNot), ChallengeModeLogic.getInstance().getGamesWonStreak());
-            builder.setMessage(saveOrNot);
-
-            builder.setPositiveButton(getString(R.string.yesSaveStreak), new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    PlayAkt.super.onBackPressed();
-                }
-            });
-            builder.setNegativeButton(getString(R.string.noExitWithoutSave), new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    PlayAkt.super.onBackPressed();
-                }
-            });
-            builder.setNeutralButton(getString(R.string.dontExit), new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                }
-            });
-            builder.show();
-
-        } else if (gameMode.equals("single")) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(getString(R.string.exitOrNot));
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.exitOrNot));
+        if (gameMode.equals("challenge")){
+            builder.setMessage(R.string.sureToExitCM);
+        } else if (gameMode.equals("single")){
             builder.setMessage(R.string.sureToExit);
-            builder.setPositiveButton(getString(R.string.yesSure), new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    PlayAkt.super.onBackPressed();
-                }
-            });
-            builder.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                }
-            });
-            builder.show();
-
-
         }
+
+
+        builder.setPositiveButton(getString(R.string.yesSure), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                PlayAkt.super.onBackPressed();
+            }
+        });
+        builder.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+            }
+        });
+        builder.show();
 
 
     }

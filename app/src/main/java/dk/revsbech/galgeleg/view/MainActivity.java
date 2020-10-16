@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -32,7 +33,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         singleGameButton = findViewById(R.id.singleGameButton);
         singleGameButton.setOnClickListener(this);
-        singleGameButton.setEnabled(false);
 
         settingsButton = findViewById(R.id.settingsButton);
         settingsButton.setOnClickListener(this);
@@ -48,11 +48,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Executor bgThread = Executors.newSingleThreadExecutor();
         Handler uiThread = new Handler();
         bgThread.execute(() ->{
-            System.out.println("Creating HMLogic");
-            HMLogic.getInstance();
-            uiThread.post(()->{
-                singleGameButton.setEnabled(true); //Can only play when logic object is instantiated
-            });
+            System.out.println("Initializing HMLogic");
+            HMLogic.getInstance().initWithNetwork();
         });
 
 
@@ -81,14 +78,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if (view == singleGameButton){
-            //Start new game, when starting the activity
-            HMLogic.getInstance().startNewGame();
+            startGameIfReady("single");
 
-            //Switch activity
-            Intent i = new Intent(this,PlayAkt.class);
-            i.setFlags(i.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY); // Adds the FLAG_ACTIVITY_NO_HISTORY flag
-            i.putExtra("gameMode","single");
-            startActivity(i);
         } else if (view == settingsButton){
 
             Fragment fragment = new SettingsFrag();
@@ -103,19 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(i);
 
         } else if (view == challengeModeButton){
-            //Start new game, when starting the activity
-            HMLogic.getInstance().startNewGame();
-
-            //Reset ChallengeMode object
-            ChallengeModeLogic cml = ChallengeModeLogic.getInstance();
-            cml.reset(HMLogic.getInstance().getCategory());
-
-            //Switch activity
-            Intent i = new Intent(this,PlayAkt.class);
-            i.setFlags(i.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY); // Adds the FLAG_ACTIVITY_NO_HISTORY flag
-            i.putExtra("gameMode","challenge");
-            startActivity(i);
-
+            startGameIfReady("challenge");
         }
     }
 
@@ -123,20 +102,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
         String selection = (String) adapterView.getSelectedItem();
-        singleGameButton.setEnabled(false);
 
         Executor bgThread = Executors.newSingleThreadExecutor();
         Handler uiThread = new Handler();
         bgThread.execute(() ->{
             HMLogic.getInstance().switchCategory(selection);
-            uiThread.post(()->{
-                singleGameButton.setEnabled(true);
-            });
         });
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    private void startGameIfReady(String gameMode){
+        //If it is done loading
+        if (HMLogic.getInstance().isLoadingDone()){
+            //Start new game, when starting the activity
+            HMLogic.getInstance().startNewGame();
+
+            //Switch activity
+            Intent i = new Intent(this,PlayAkt.class);
+            i.setFlags(i.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY); // Adds the FLAG_ACTIVITY_NO_HISTORY flag
+            i.putExtra("gameMode",gameMode);
+            startActivity(i);
+        } else { //If it is not done loading
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    getString(R.string.waitForLoad),
+                    Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 }
