@@ -56,7 +56,10 @@ public class HsAkt extends AppCompatActivity implements AdapterView.OnItemSelect
     }
 
     @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+        String selection = (String) adapterView.getSelectedItem();
+
+        chosenCategory=selection;
 
     }
 
