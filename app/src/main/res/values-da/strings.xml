@@ -1,4 +1,11 @@
 <resources>
+    <!-- General-->
+    <string name="yesSure">Ja. Jeg er sikker</string>
+    <string name="no">Nej</string>
+    <string name="dontExit">Forlad ikke spillet</string>
+
+
+
     <!-- Frontpage-->
     <string name="app_name">Galgeleg</string>
     <string name="settings">Indstillinger</string>
@@ -21,6 +28,12 @@
     <string name="youguessed">Du gættede: </string>
     <string name="youWon">Du vandt!!</string>
     <string name="youLost">Du tabte!</string>
+    <string name="exitOrNot">Forlad spil</string>
+    <string name="sureToExit">Er du sikker på, at du vil forlade spillet? Spillet vil blive tabt.</string>
+    <string name="saveStreakCM">Gem streak</string>
+    <string name="saveStreakOrNot">Vil du gemme din nuværende streak, så du kan fortsætte senere? Din streak er %d</string>
+    <string name="yesSaveStreak">Ja. Gem min streak</string>
+    <string name="noExitWithoutSave">Nej. Forlad uden at gemme. </string>
 
     <!-- Settings -->
     <string name="language">Sprog</string>
