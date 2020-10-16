@@ -1,7 +1,13 @@
 package dk.revsbech.galgeleg.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import dk.revsbech.galgeleg.R;
+import dk.revsbech.galgeleg.backend.HSCategory;
+import dk.revsbech.galgeleg.backend.HSEntry;
+import dk.revsbech.galgeleg.backend.HSManager;
 import dk.revsbech.galgeleg.programlogic.HMLogic;
 
 import android.os.Bundle;
@@ -11,8 +17,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
+
 public class HsAkt extends AppCompatActivity implements AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener {
 
+    String chosenCategory = "Default";
     Spinner categorySpinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,17 +41,18 @@ public class HsAkt extends AppCompatActivity implements AdapterView.OnItemSelect
         categorySpinner.setAdapter(adapter);
         categorySpinner.setOnItemSelectedListener(this);
 
-        String[] lande = {"Danmark", "Norge", "Sverige", "Finland", "Holland", "Italien", "Tyskland",
-                "Frankrig", "Spanien", "Portugal", "Nepal", "Indien", "Kina", "Japan", "Thailand"};
+        // Lookup the recyclerview in activity layout
+        RecyclerView hsRV = (RecyclerView) findViewById(R.id.rvContacts);
 
-        ArrayAdapter hsAdapter = new ArrayAdapter(this, R.layout.hslistelem, R.id.HSListName, lande);
-
-        ListView listView = new ListView(this);
-        listView.setOnItemClickListener(this);
-        listView.setAdapter(hsAdapter);
-
-
-        setContentView(listView);
+        // Initialize contacts
+        HSCategory hsCategory = HSManager.getInstance().getHighScoreList(HsAkt.this).getCategoryList("Medicin");
+        // Create adapter passing in the sample user data
+        HSAdapter hsAdapter = new HSAdapter(hsCategory);
+        // Attach the adapter to the recyclerview to populate items
+        hsRV.setAdapter(hsAdapter);
+        // Set layout manager to position the items
+        hsRV.setLayoutManager(new LinearLayoutManager(this));
+        // That's all!
     }
 
     @Override

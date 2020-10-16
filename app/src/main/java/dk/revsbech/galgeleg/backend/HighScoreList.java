@@ -1,5 +1,6 @@
 package dk.revsbech.galgeleg.backend;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class HighScoreList {
@@ -47,5 +48,10 @@ public class HighScoreList {
         }
         //Indicate that it didn't make it on the HS
         return false;
+    }
+
+
+    public HSCategory getCategoryList(String category){
+        return categoryHSMap.get(category);
     }
 }

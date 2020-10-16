@@ -29,5 +29,15 @@ public class HSEntry implements Comparable<HSEntry> {
         }
     }
 
+    public Date getDate() {
+        return date;
+    }
 
+    public int getScore() {
+        return score;
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
 }

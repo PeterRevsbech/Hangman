@@ -30,8 +30,10 @@ public class HSCategory {
         } else{
             return entries.get(0).score;
         }
+    }
 
-
+    public ArrayList<HSEntry> getEntries(){
+        return this.entries;
     }
 
 
