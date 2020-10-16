@@ -10,26 +10,12 @@ import java.util.HashMap;
 public class SheetReader {
     String id = "1pQ2xRRJARb6YaTsmYPoUsni_QbM3efr9HQ0ojp8fcNA";
     //ArrayList<String> words;
-    String currentCategory = null;
     String defaultCategory = "Default";
     String[] categories;
     HashMap<String,ArrayList<String>> words = new HashMap<String,ArrayList<String>>();
     private static SheetReader single_instance=null;
 
     private SheetReader(){
-        try{
-            categories=readCategories();
-            //Creates entry in words-hashmap for each category
-            for (int i = 0; i < categories.length; i++) {
-                words.put(categories[i],null);
-            }
-            readSheet(defaultCategory);
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-
-
-
     }
 
     public static SheetReader getInstance(){

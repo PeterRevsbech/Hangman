@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //Get categories and set spinner
         bgThread.execute(() ->{
-            categorySpinner = (Spinner) findViewById(R.id.categorySpinner);
+            categorySpinner = (Spinner) findViewById(R.id.MainAktCategorySpinner);
             //Get categories
             String[] categories= HMLogic.getInstance().getCategories();
 
@@ -125,6 +125,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent i = new Intent(this,PlayAkt.class);
             i.setFlags(i.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY); // Adds the FLAG_ACTIVITY_NO_HISTORY flag
             i.putExtra("gameMode",gameMode);
+            if (gameMode.equals("challenge")){
+                ChallengeModeLogic.getInstance().reset();
+            }
             startActivity(i);
         } else { //If it is not done loading
             Toast toast = Toast.makeText(getApplicationContext(),

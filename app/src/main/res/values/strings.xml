@@ -51,6 +51,8 @@
 
     <!-- Game Over-->
     <string name="finishedWithStreak">Your finished with a streak of</string>
+    <string name="didntMakeHS">You didn\'t make it to the highscores</string>
+    <string name="madeHs">Your made it to the highscores!f</string>
 
     <!-- Settings-->
     <string-array name="languages_array">

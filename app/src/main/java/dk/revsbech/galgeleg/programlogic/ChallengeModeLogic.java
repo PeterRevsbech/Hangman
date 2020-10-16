@@ -5,14 +5,12 @@ import java.io.IOException;
 public class ChallengeModeLogic {
 
     private int gamesWonStreak;
-    private String category;
     private static ChallengeModeLogic single_instance=null;
 
     private ChallengeModeLogic(){
     }
 
-    public void reset(String category){
-        this.category = category;
+    public void reset(){
         this.gamesWonStreak=0;
     }
 

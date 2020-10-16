@@ -50,7 +50,8 @@
 
     <!-- Game Over-->
     <string name="finishedWithStreak">Du sluttede med en streak på</string>
-
+    <string name="didntMakeHS">Du kom desværre ikke på highscoren</string>
+    <string name="madeHs">Du kom på highscoren!</string>
 
 
 

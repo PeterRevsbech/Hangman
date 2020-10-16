@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import dk.revsbech.galgeleg.R;
+import dk.revsbech.galgeleg.backend.HSManager;
+import dk.revsbech.galgeleg.programlogic.HMLogic;
 
 public class GameOverAkt extends AppCompatActivity {
 
@@ -21,6 +23,8 @@ public class GameOverAkt extends AppCompatActivity {
         secretWordTV=findViewById(R.id.GameOverWordTextView);
         secretWordTV.setText(secretWordString);
 
+
+        //If it is challenge mode
         if (getIntent().getStringExtra("gameMode").equals("challenge")){
             Fragment fragment = new GameOver_CMfrag();
             getSupportFragmentManager().beginTransaction()

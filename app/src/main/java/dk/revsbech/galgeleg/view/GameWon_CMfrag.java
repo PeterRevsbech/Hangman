@@ -24,7 +24,7 @@ public class GameWon_CMfrag extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root =inflater.inflate(R.layout.game_won_cmfrag, container, false);
-        streakNumberTV = root.findViewById(R.id.StreakNumberTV);
+        streakNumberTV = root.findViewById(R.id.WonStreakNumberTV);
 
         //Increase streak, cause you just won another
         ChallengeModeLogic.getInstance().increaseStreak();

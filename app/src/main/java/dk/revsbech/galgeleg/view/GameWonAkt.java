@@ -33,6 +33,7 @@ public class GameWonAkt extends AppCompatActivity {
         }
 
 
+        //If it is challenge mode
         if (getIntent().getStringExtra("gameMode").equals("challenge")){
             Fragment fragment = new GameWon_CMfrag();
             getSupportFragmentManager().beginTransaction()
