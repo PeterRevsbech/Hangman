@@ -53,6 +53,10 @@
     <string name="didntMakeHS">Du kom desværre ikke på highscoren</string>
     <string name="madeHs">Du kom på highscoren!</string>
 
+    <!-- Highscores-->
+    <string name="noHsInCategory">Der er endnu ingen highscores i denne kategori.</string>
+
+
 
 
 </resources>

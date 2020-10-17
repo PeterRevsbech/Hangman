@@ -17,6 +17,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import dk.revsbech.galgeleg.R;
+import dk.revsbech.galgeleg.backend.HSManager;
 import dk.revsbech.galgeleg.programlogic.ChallengeModeLogic;
 import dk.revsbech.galgeleg.programlogic.HMLogic;
 
@@ -58,6 +59,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             categorySpinner = (Spinner) findViewById(R.id.MainAktCategorySpinner);
             //Get categories
             String[] categories= HMLogic.getInstance().getCategories();
+
+            //Ensure that the cateogires are in the HS
+            HSManager.getInstance().ensureCategories(categories,MainActivity.this);
 
             // Create an ArrayAdapter using the string array and a default spinner layout
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(

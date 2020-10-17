@@ -16,7 +16,8 @@ public class HSCategory {
     }
 
     void refineTopX(int X) {
-        Collections.sort(entries);
+        Collections.sort(entries); //Sorts with smallest first using comparator
+        Collections.reverse(entries); //Want largest first, not smallest first
 
         //Remove the smallest size-X entries - e.g. 11-10 = 1 entries
         for (int i = 0; i < entries.size() - X; i++) {
@@ -34,6 +35,10 @@ public class HSCategory {
 
     public ArrayList<HSEntry> getEntries(){
         return this.entries;
+    }
+
+    public boolean isEmpty(){
+        return entries.size()==0;
     }
 
 

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import dk.revsbech.galgeleg.R;
@@ -48,8 +49,10 @@ public class HSAdapter extends
         TextView nameTV = holder.name;
         nameTV.setText(entry.getPlayerName());
         TextView dateTV = holder.date;
-        dateTV.setText(entry.getDate().toString());
-        TextView scoreTV = holder.name;
+        SimpleDateFormat DateFor = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
+        String stringDate = DateFor.format(entry.getDate());
+        dateTV.setText(stringDate);
+        TextView scoreTV = holder.score;
         String scoreString = entry.getScore()+"";
         scoreTV.setText(scoreString);
     }

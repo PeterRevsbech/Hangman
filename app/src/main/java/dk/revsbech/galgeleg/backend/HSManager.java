@@ -12,6 +12,7 @@ public class HSManager {
 
     private HighScoreList highScoreList;
     private static HSManager single_instance=null;
+    private int maxEntriesPrCategory =10;
 
     private HSManager(){
 
@@ -46,7 +47,7 @@ public class HSManager {
         String json = mPrefs.getString("HighScores", "");
         this.highScoreList = gson.fromJson(json, HighScoreList.class);
         if (this.highScoreList==null){//If there is no HS list yet
-            this.highScoreList = new HighScoreList();
+            this.highScoreList = new HighScoreList(maxEntriesPrCategory);
         }
 
     }
@@ -59,7 +60,13 @@ public class HSManager {
         String json = gson.toJson(this.highScoreList);
         prefsEditor.putString("HighScores", json);
         prefsEditor.commit();
+    }
 
+    //Uses network
+    public void ensureCategories(String[] categories,Context context){
+        readHSfromPM(context);
+        highScoreList.ensureCategories(categories);
+        saveHStoPM(context);
     }
 
 

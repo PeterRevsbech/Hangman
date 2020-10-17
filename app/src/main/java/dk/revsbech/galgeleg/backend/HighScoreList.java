@@ -8,8 +8,8 @@ public class HighScoreList {
     private HashMap<String, HSCategory> categoryHSMap;
     private int maxEntriesPrCategory;
 
-    public HighScoreList(){
-        this.maxEntriesPrCategory = 3;
+    public HighScoreList(int maxEntriesPrCategory){
+        this.maxEntriesPrCategory = maxEntriesPrCategory;
         this.categoryHSMap = new HashMap<String, HSCategory>();
     }
 

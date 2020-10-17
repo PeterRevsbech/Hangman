@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -23,6 +24,7 @@ public class HsAkt extends AppCompatActivity implements AdapterView.OnItemSelect
 
     String chosenCategory = "Default";
     Spinner categorySpinner;
+    RecyclerView hsRV;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,18 +43,8 @@ public class HsAkt extends AppCompatActivity implements AdapterView.OnItemSelect
         categorySpinner.setAdapter(adapter);
         categorySpinner.setOnItemSelectedListener(this);
 
-        // Lookup the recyclerview in activity layout
-        RecyclerView hsRV = (RecyclerView) findViewById(R.id.rvContacts);
-
-        // Initialize contacts
-        HSCategory hsCategory = HSManager.getInstance().getHighScoreList(HsAkt.this).getCategoryList("Medicin");
-        // Create adapter passing in the sample user data
-        HSAdapter hsAdapter = new HSAdapter(hsCategory);
-        // Attach the adapter to the recyclerview to populate items
-        hsRV.setAdapter(hsAdapter);
-        // Set layout manager to position the items
-        hsRV.setLayoutManager(new LinearLayoutManager(this));
-        // That's all!
+        // Find the recyclerview in activity layout
+        hsRV = (RecyclerView) findViewById(R.id.rvContacts);
     }
 
     @Override
@@ -60,6 +52,23 @@ public class HsAkt extends AppCompatActivity implements AdapterView.OnItemSelect
         String selection = (String) adapterView.getSelectedItem();
 
         chosenCategory=selection;
+
+        // Get category hs
+        HSCategory hsCategory = HSManager.getInstance().getHighScoreList(HsAkt.this).getCategoryList(chosenCategory);
+
+        if (hsCategory.isEmpty()){
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    getString(R.string.noHsInCategory),
+                    Toast.LENGTH_SHORT);
+            toast.show();
+            return;
+        }
+        // Create adapter passing in the sample user data
+        HSAdapter hsAdapter = new HSAdapter(hsCategory);
+        // Attach the adapter to the recyclerview to populate items
+        hsRV.setAdapter(hsAdapter);
+        // Set layout manager to position the items
+        hsRV.setLayoutManager(new LinearLayoutManager(this));
 
     }
 

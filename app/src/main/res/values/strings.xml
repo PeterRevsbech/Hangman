@@ -54,6 +54,10 @@
     <string name="didntMakeHS">You didn\'t make it to the highscores</string>
     <string name="madeHs">Your made it to the highscores!f</string>
 
+    <!-- Highscores-->
+    <string name="noHsInCategory">There are no highscores in this category yet.</string>
+
+
     <!-- Settings-->
     <string-array name="languages_array">
         <item>Dansk</item>
