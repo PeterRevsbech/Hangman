@@ -52,11 +52,15 @@
     <string name="finishedWithStreak">Du sluttede med en streak på</string>
     <string name="didntMakeHS">Du kom desværre ikke på highscoren</string>
     <string name="madeHs">Du kom på highscoren!</string>
+    <string name="name">Navn</string>
+    <string name="writeName">Skriv dit navn herunder</string>
+    <string name="submit">Indsend</string>
+
+
+
 
     <!-- Highscores-->
     <string name="noHsInCategory">Der er endnu ingen highscores i denne kategori.</string>
-
-
 
 
 </resources>

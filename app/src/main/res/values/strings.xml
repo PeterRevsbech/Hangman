@@ -53,6 +53,11 @@
     <string name="finishedWithStreak">Your finished with a streak of</string>
     <string name="didntMakeHS">You didn\'t make it to the highscores</string>
     <string name="madeHs">Your made it to the highscores!f</string>
+    <string name="name">Name</string>
+    <string name="writeName">Write your name below</string>
+    <string name="submit">Submit</string>
+
+
 
     <!-- Highscores-->
     <string name="noHsInCategory">There are no highscores in this category yet.</string>

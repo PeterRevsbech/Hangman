@@ -17,19 +17,21 @@ public class HSCategory {
 
     void refineTopX(int X) {
         Collections.sort(entries); //Sorts with smallest first using comparator
-        Collections.reverse(entries); //Want largest first, not smallest first
 
         //Remove the smallest size-X entries - e.g. 11-10 = 1 entries
         for (int i = 0; i < entries.size() - X; i++) {
             entries.remove(i);
         }
+
+        Collections.reverse(entries); //Want largest first, not smallest first
     }
 
     public int getLowestEntryScore(){
         if (entries.size()==0){
             return 0;
         } else{
-            return entries.get(0).score;
+            //Return score of last entry, since they are sorted highest first
+            return entries.get(entries.size()-1).score;
         }
     }
 

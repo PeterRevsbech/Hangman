@@ -30,15 +30,20 @@ public class HSManager {
         return highScoreList;
     }
 
-    //Returns true if it made it to the HS
-    public boolean addEntryCandidate(String category, int score, String playerName, Context context){
+    public boolean canMakeItOnHs(String category, int score, Context context){
         readHSfromPM(context);
-        boolean madeItOnHS = highScoreList.addEntry(category,score,playerName);
-        //Only save to PM if it made it on HS
-        if (madeItOnHS){
-            saveHStoPM(context);
-        }
-        return madeItOnHS;
+        return highScoreList.canMakeItOnHS(category,score);
+    }
+
+    //Returns true if it made it to the HS
+    public void addEntryToHS(String category, int score, String playerName, Context context){
+        //Read list from PM
+        readHSfromPM(context);
+        //Add to list
+        highScoreList.addEntry(category,score,playerName);
+        //Save to PM
+        saveHStoPM(context);
+
     }
 
     private void readHSfromPM(Context context){

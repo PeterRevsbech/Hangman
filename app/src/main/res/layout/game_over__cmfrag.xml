@@ -29,5 +29,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="You made it to the HS" />
+
+        <TextView
+            android:id="@+id/writeNameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/writeName" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/writeNameTextEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="@string/name" />
+
+            <Button
+                android:id="@+id/sendToHSButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/submit" />
+        </LinearLayout>
     </LinearLayout>
 </FrameLayout>
