@@ -31,7 +31,7 @@ public class HSCategory {
             return 0;
         } else{
             //Return score of last entry, since they are sorted highest first
-            return entries.get(entries.size()-1).score;
+            return entries.get(entries.size()-1).getScore();
         }
     }
 

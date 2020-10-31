@@ -8,7 +8,7 @@ import dk.revsbech.galgeleg.backend.SheetReader;
 
 public class HMLogic {
 
-    /** AHT afprøvning er muligeOrd synlig på pakkeniveau */
+
     ArrayList<String> wordList = new ArrayList<String>();
     private String secretWord;
     private ArrayList<String> usedLetters = new ArrayList<String>();

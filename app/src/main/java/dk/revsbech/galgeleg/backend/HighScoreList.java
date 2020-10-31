@@ -29,8 +29,11 @@ public class HighScoreList {
         categoryArray[0] =category;
         ensureCategories(categoryArray);
 
-        //Add entry
-        categoryHSMap.get(category).addEntry(new HSEntry(playerName,score));
+        //Add entry with HSEntry builder
+        HSEntry entry = new HSEntry.HSEntryBuilder(playerName,score)
+                .date()
+                .build();
+        categoryHSMap.get(category).addEntry(entry);
 
         //Refine to sort and assure that number of entires is correct
         categoryHSMap.get(category).refineTopX(maxEntriesPrCategory);

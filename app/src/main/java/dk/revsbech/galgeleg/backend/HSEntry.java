@@ -3,14 +3,14 @@ package dk.revsbech.galgeleg.backend;
 import java.util.Date;
 
 public class HSEntry implements Comparable<HSEntry> {
-    final String playerName;
-    final int score;
-    final Date date;
+    private final String playerName;
+    private final int score;
+    private final Date date;
 
-    HSEntry(String playerName, int score) {
-        this.playerName = playerName;
-        this.score = score;
-        this.date = new Date(System.currentTimeMillis());
+    HSEntry(HSEntryBuilder hsEntryBuilder) {
+        this.playerName = hsEntryBuilder.playerName;
+        this.score = hsEntryBuilder.score;
+        this.date = hsEntryBuilder.date;
     }
 
     @Override
@@ -40,4 +40,27 @@ public class HSEntry implements Comparable<HSEntry> {
     public String getPlayerName() {
         return playerName;
     }
+
+    public static class HSEntryBuilder {
+        private final String playerName;
+        private final int score;
+        private Date date;
+
+        public HSEntryBuilder(String playerName, int score) {
+            this.playerName = playerName;
+            this.score = score;
+        }
+
+        // for all class attributes we define an attribute method that returns a UserBuilder
+        public HSEntryBuilder date() {
+            this.date = new Date(System.currentTimeMillis());
+            return this;
+        }
+
+        // finally we return a new instance of the User class copying the values of the UserBuilder
+        public HSEntry build() {
+            return new HSEntry(this);
+        }
+    }
+
 }
