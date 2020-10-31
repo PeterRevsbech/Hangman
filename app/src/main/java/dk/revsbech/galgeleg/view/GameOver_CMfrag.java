@@ -14,7 +14,7 @@ import android.widget.TextView;
 import dk.revsbech.galgeleg.R;
 import dk.revsbech.galgeleg.backend.HSManager;
 import dk.revsbech.galgeleg.model.ChallengeModeLogic;
-import dk.revsbech.galgeleg.model.HMLogic;
+import dk.revsbech.galgeleg.model.HMConfig;
 
 public class GameOver_CMfrag extends Fragment implements View.OnClickListener {
 
@@ -41,7 +41,7 @@ public class GameOver_CMfrag extends Fragment implements View.OnClickListener {
         String streakString = streak+"";
         streakNumberTV.setText(streakString);
 
-        category = HMLogic.getInstance().getCategory();
+        category = HMConfig.getInstance().getCategory();
 
         //Get HSManager to write to highscore if score made it
         boolean validForHS = HSManager.getInstance().canMakeItOnHs(category,streak,getContext());

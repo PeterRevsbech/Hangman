@@ -12,14 +12,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import dk.revsbech.galgeleg.model.HMLogic;
+import dk.revsbech.galgeleg.model.HMGame;
 import dk.revsbech.galgeleg.R;
 
 
 public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
 
     Button guessButton, cheatButton;
-    HMLogic hmLogic;
+    HMGame hmGame;
     TextView wordView;
     TextView info;
     EditText inputField;
@@ -37,8 +37,8 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
         gameMode = getIntent().getStringExtra("gameMode");
 
         //Initializing--------------------------------------------------------------
-        // logic object (singleton)
-        hmLogic = HMLogic.getInstance();
+        // Make new HMGame object
+        hmGame = new HMGame();
 
         //guess button
         guessButton = findViewById(R.id.play_guessButton);
@@ -50,14 +50,14 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
 
         //Word view
         wordView = findViewById(R.id.play_WordView);
-        wordView.setText(hmLogic.getVisibleWord());
+        wordView.setText(hmGame.getVisibleWord());
 
         //Noose image
         nooseImage = findViewById(R.id.play_NooseImage);
 
         //Guess list
         guesses = findViewById(R.id.play_guessesText);
-        guesses.setText(hmLogic.getUsedLetters().toString());
+        guesses.setText(hmGame.getUsedLetters().toString());
 
         ///Info text
         info = findViewById(R.id.play_infoText);
@@ -92,19 +92,19 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
             }
 
             //If guess was vaild - make guess
-            hmLogic.guessLetter(guess);
-            if (hmLogic.isLastGuessCorrect()) {
-                wordView.setText(hmLogic.getVisibleWord());
+            hmGame.guessLetter(guess);
+            if (hmGame.isLastGuessCorrect()) {
+                wordView.setText(hmGame.getVisibleWord());
             } else {
                 updateNoose();
             }
 
             //If game is won
-            if (hmLogic.isGameWon()) {
+            if (hmGame.isGameWon()) {
                 gameWon();
             } else
                 //If game is lost
-                if (hmLogic.isGameLost()) {
+                if (hmGame.isGameLost()) {
                     gameOver();
                 } else {
                     updateGuessList();
@@ -112,12 +112,12 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
 
 
         } else if (view == cheatButton) {
-            cheatWordTV.setText(hmLogic.getSecretWord());
+            cheatWordTV.setText(hmGame.getSecretWord());
         }
     }
 
     public void updateGuessList() {
-        guesses.setText(hmLogic.getUsedLetters().toString());
+        guesses.setText(hmGame.getUsedLetters().toString());
     }
 
     public void displayMsg(String msg) {
@@ -126,7 +126,7 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void updateNoose() {
-        int wrongGuesses = hmLogic.getNumOfWrongGuesses();
+        int wrongGuesses = hmGame.getNumOfWrongGuesses();
         switch (wrongGuesses) {
             case 1:
                 nooseImage.setImageResource(R.drawable.forkert1);
@@ -156,13 +156,13 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
     public String validateGuess(String letter) {
         String invalidMsg = null;
         char guessChar = letter.toLowerCase().charAt(0);
-        if (hmLogic.isGameWon()) {
+        if (hmGame.isGameWon()) {
             invalidMsg = (String) getText(R.string.alreadyWon);
-        } else if (hmLogic.isGameLost()) {
+        } else if (hmGame.isGameLost()) {
             invalidMsg = (String) getText(R.string.alreadyLost);
         } else if (letter.length() != 1) {
             invalidMsg = (String) getText(R.string.onlyGuessOneLetter);
-        } else if (hmLogic.getUsedLetters().contains(letter)) {
+        } else if (hmGame.getUsedLetters().contains(letter)) {
             invalidMsg = getText(R.string.alreadyGuessed) + " " + letter;
         } else if (!((guessChar >= 97 && guessChar <= 122) || (guessChar == 229 || guessChar == 230 || guessChar == 248))) {
             invalidMsg = (String) getText(R.string.invalidGuess);
@@ -173,15 +173,15 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
 
     public void gameOver() {
         Intent i = new Intent(this, GameOverAkt.class);
-        i.putExtra("SecretWord", hmLogic.getSecretWord());
+        i.putExtra("SecretWord", hmGame.getSecretWord());
         i.putExtra("gameMode", gameMode);
         startActivity(i);
     }
 
     public void gameWon() {
         Intent i = new Intent(this, GameWonAkt.class);
-        i.putExtra("SecretWord", hmLogic.getSecretWord());
-        i.putExtra("NumOfGuesses", hmLogic.getNumOfWrongGuesses());
+        i.putExtra("SecretWord", hmGame.getSecretWord());
+        i.putExtra("NumOfGuesses", hmGame.getNumOfWrongGuesses());
         i.putExtra("gameMode", gameMode);
         startActivity(i);
     }

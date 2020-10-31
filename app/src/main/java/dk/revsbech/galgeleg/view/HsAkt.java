@@ -7,7 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import dk.revsbech.galgeleg.R;
 import dk.revsbech.galgeleg.backend.HSCategory;
 import dk.revsbech.galgeleg.backend.HSManager;
-import dk.revsbech.galgeleg.model.HMLogic;
+import dk.revsbech.galgeleg.model.HMConfig;
+import dk.revsbech.galgeleg.model.HMGame;
 
 import android.os.Bundle;
 import android.view.View;
@@ -28,7 +29,7 @@ public class HsAkt extends AppCompatActivity implements AdapterView.OnItemSelect
 
         categorySpinner = (Spinner) findViewById(R.id.HSCategorySpinner);
         //Get categories - not from network
-        String[] categories= HMLogic.getInstance().getCategories();
+        String[] categories= HMConfig.getInstance().getCategories();
 
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(

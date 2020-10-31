@@ -19,7 +19,8 @@ import java.util.concurrent.Executors;
 import dk.revsbech.galgeleg.R;
 import dk.revsbech.galgeleg.backend.HSManager;
 import dk.revsbech.galgeleg.model.ChallengeModeLogic;
-import dk.revsbech.galgeleg.model.HMLogic;
+import dk.revsbech.galgeleg.model.HMConfig;
+import dk.revsbech.galgeleg.model.HMGame;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Handler uiThread = new Handler();
         bgThread.execute(() ->{
             System.out.println("Initializing HMLogic");
-            HMLogic.getInstance().initWithNetwork();
+            HMConfig.getInstance().initWithNetwork();
         });
 
 
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bgThread.execute(() ->{
             categorySpinner = (Spinner) findViewById(R.id.MainAktCategorySpinner);
             //Get categories
-            String[] categories= HMLogic.getInstance().getCategories();
+            String[] categories= HMConfig.getInstance().getCategories();
 
             //Ensure that the cateogires are in the HS
             HSManager.getInstance().ensureCategories(categories,MainActivity.this);
@@ -110,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Executor bgThread = Executors.newSingleThreadExecutor();
         Handler uiThread = new Handler();
         bgThread.execute(() ->{
-            HMLogic.getInstance().switchCategory(selection);
+            HMConfig.getInstance().switchCategory(selection);
         });
     }
 
@@ -121,9 +122,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void startGameIfReady(String gameMode){
         //If it is done loading
-        if (HMLogic.getInstance().isLoadingDone()){
-            //Start new game, when starting the activity
-            HMLogic.getInstance().startNewGame();
+        if (HMConfig.getInstance().isLoadingDone()){
 
             //Switch activity
             Intent i = new Intent(this,PlayAkt.class);

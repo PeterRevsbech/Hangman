@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import dk.revsbech.galgeleg.R;
 import dk.revsbech.galgeleg.model.ChallengeModeLogic;
-import dk.revsbech.galgeleg.model.HMLogic;
+import dk.revsbech.galgeleg.model.HMGame;
 
 public class GameWon_CMfrag extends Fragment implements View.OnClickListener {
 
@@ -42,10 +42,6 @@ public class GameWon_CMfrag extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if (view == nextWordButton){
-            //Start new game, when starting the activity
-            HMLogic.getInstance().startNewGame();
-
-
             //Switch activity
             Intent i = new Intent(getActivity(),PlayAkt.class);
             i.setFlags(i.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY); // Adds the FLAG_ACTIVITY_NO_HISTORY flag
