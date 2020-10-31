@@ -5,7 +5,7 @@ import java.util.Collections;
 
 public class HSCategory {
     String category;
-    ArrayList<HSEntry> entries = new ArrayList<HSEntry>();
+    ArrayList<HSEntry> entries = new ArrayList<>();
 
     HSCategory(String category) {
         this.category = category;

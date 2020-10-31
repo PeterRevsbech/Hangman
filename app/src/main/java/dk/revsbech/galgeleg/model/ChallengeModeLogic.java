@@ -23,8 +23,8 @@ public class ChallengeModeLogic {
         return gamesWonStreak;
     }
 
-    public int increaseStreak(){
-        return this.gamesWonStreak++;
+    public void increaseStreak(){
+        this.gamesWonStreak++;
     }
 
 

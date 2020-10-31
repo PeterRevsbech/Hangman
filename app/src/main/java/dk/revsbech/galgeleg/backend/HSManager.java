@@ -64,7 +64,7 @@ public class HSManager {
         Gson gson = new Gson();
         String json = gson.toJson(this.highScoreList);
         prefsEditor.putString("HighScores", json);
-        prefsEditor.commit();
+        prefsEditor.apply();
     }
 
     //Uses network

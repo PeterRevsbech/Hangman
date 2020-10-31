@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class HMGame {
 
     private String secretWord;
-    private ArrayList<String> usedLetters = new ArrayList<String>();
+    private ArrayList<String> usedLetters = new ArrayList<>();
     private String visibleWord;
     private int numOfWrongGuesses;
     private boolean lastGuessCorrect;
@@ -57,21 +57,22 @@ public class HMGame {
     }
 
     private void updateVisibleWord() {
-        visibleWord = "";
+        StringBuilder sb = new StringBuilder();
         gameWon = true;
         for (int n = 0; n < secretWord.length(); n++) {
             String letter = secretWord.substring(n, n + 1);
             if (letter.equals("-")) {
-                visibleWord = visibleWord + "-";
+                sb.append("-");
             } else if (letter.equals(" ")) {
-                visibleWord = visibleWord + " ";
+                sb.append(" ");
             } else if (usedLetters.contains(letter)) {
-                visibleWord = visibleWord + letter;
+                sb.append(letter);
             } else {
-                visibleWord = visibleWord + "*";
+                sb.append("*");
                 gameWon = false;
             }
         }
+        visibleWord=sb.toString();
     }
 
 

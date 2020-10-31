@@ -7,7 +7,7 @@ import java.util.Random;
 import dk.revsbech.galgeleg.backend.SheetReader;
 
 public class HMConfig {
-    ArrayList<String> wordList = new ArrayList<String>();
+    ArrayList<String> wordList = new ArrayList<>();
     private boolean loadingDone = false;
     private static HMConfig single_instance =null;
     private String category = "Default";

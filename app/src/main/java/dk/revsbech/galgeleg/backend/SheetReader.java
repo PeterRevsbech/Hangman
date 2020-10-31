@@ -14,7 +14,7 @@ public class SheetReader {
     String[] categories;
 
 
-    HashMap<String,ArrayList<String>> words = new HashMap<String,ArrayList<String>>();
+    HashMap<String,ArrayList<String>> words = new HashMap<>();
     private static SheetReader single_instance=null;
 
     private SheetReader(){
@@ -48,14 +48,14 @@ public class SheetReader {
             if (line ==null){break;}
             String[] splitString = line.split("\"");
             String word = splitString[1];
-            sb.append(word+"\n");
+            sb.append(word).append("\n");
         }
         String data = sb.toString();
 
         String[] splitData = data.split("\n");
-        ArrayList<String> result = new ArrayList<String>(splitData.length);
-        for (int i = 0; i < splitData.length; i++) {
-            result.add(splitData[i].toLowerCase());
+        ArrayList<String> result = new ArrayList<>(splitData.length);
+        for (String splitDatum : splitData) {
+            result.add(splitDatum.toLowerCase());
         }
 
         words.put(categoryName,result);
@@ -63,9 +63,9 @@ public class SheetReader {
     }
 
 
-    public String[] readCategoryList() throws IOException{
+    public void readCategoryList() throws IOException{
         if (categories!=null){
-            return categories;
+            return;
         }
         String url = "https://docs.google.com/spreadsheets/d/"+id+"/gviz/tq?tqx=out:csv&sheet="+"Categories";
 
@@ -79,20 +79,14 @@ public class SheetReader {
             if (line ==null){break;}
             String[] splitString = line.split("\"");
             String word = splitString[1];
-            sb.append(word+"\n");
+            sb.append(word).append("\n");
         }
         String categoriesData = sb.toString();
         categories= categoriesData.split("\n");
-        return categories;
     }
     public String[] getCategories(){
         return this.categories;
     }
-    public HashMap<String, ArrayList<String>> getWords() {
-        return words;
-    }
-
-
 
 
 }
