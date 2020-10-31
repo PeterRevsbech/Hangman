@@ -1,11 +1,14 @@
 package dk.revsbech.galgeleg.view;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,7 +26,6 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
     TextView wordView;
     TextView info;
     EditText inputField;
-    ImageView nooseImage;
     TextView guesses;
     TextView cheatWordTV;
     String gameMode;
@@ -51,9 +53,6 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
         //Word view
         wordView = findViewById(R.id.play_WordView);
         wordView.setText(hmGame.getVisibleWord());
-
-        //Noose image
-        nooseImage = findViewById(R.id.play_NooseImage);
 
         //Guess list
         guesses = findViewById(R.id.play_guessesText);
@@ -125,26 +124,28 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
         System.out.println(msg);
     }
 
+
     public void updateNoose() {
         int wrongGuesses = hmGame.getNumOfWrongGuesses();
+        View background = findViewById(R.id.playAkt);
         switch (wrongGuesses) {
             case 1:
-                nooseImage.setImageResource(R.drawable.forkert1);
+                background.setBackgroundResource(R.drawable.wrong1);
                 break;
             case 2:
-                nooseImage.setImageResource(R.drawable.forkert2);
+                background.setBackgroundResource(R.drawable.wrong2);
                 break;
             case 3:
-                nooseImage.setImageResource(R.drawable.forkert3);
+                background.setBackgroundResource(R.drawable.wrong3);
                 break;
             case 4:
-                nooseImage.setImageResource(R.drawable.forkert4);
+                background.setBackgroundResource(R.drawable.wrong4);
                 break;
             case 5:
-                nooseImage.setImageResource(R.drawable.forkert5);
+                background.setBackgroundResource(R.drawable.wrong5);
                 break;
             case 6:
-                nooseImage.setImageResource(R.drawable.forkert6);
+                background.setBackgroundResource(R.drawable.wrong6);
                 break;
             case 7:
 
