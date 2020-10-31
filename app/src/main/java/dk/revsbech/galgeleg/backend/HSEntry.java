@@ -3,9 +3,9 @@ package dk.revsbech.galgeleg.backend;
 import java.util.Date;
 
 public class HSEntry implements Comparable<HSEntry> {
-    String playerName;
-    int score;
-    Date date;
+    final String playerName;
+    final int score;
+    final Date date;
 
     HSEntry(String playerName, int score) {
         this.playerName = playerName;

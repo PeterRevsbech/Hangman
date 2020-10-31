@@ -13,7 +13,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".view.GameOverAkt" />
         <activity android:name=".view.GameWonAkt" />
-        <activity android:name=".view.AndroidLocalize" />
         <activity android:name=".view.HsAkt" />
         <activity android:name=".view.PlayAkt" />
         <activity android:name=".view.MainActivity">

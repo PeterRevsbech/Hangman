@@ -12,6 +12,8 @@ public class SheetReader {
     //ArrayList<String> words;
     String defaultCategory = "Default";
     String[] categories;
+
+
     HashMap<String,ArrayList<String>> words = new HashMap<String,ArrayList<String>>();
     private static SheetReader single_instance=null;
 
@@ -27,13 +29,13 @@ public class SheetReader {
 
 
 
-    public ArrayList<String> readSheet(String sheetName) throws IOException {
-        if (sheetName==null){sheetName = defaultCategory;}
-        String url = "https://docs.google.com/spreadsheets/d/"+id+"/gviz/tq?tqx=out:csv&sheet="+sheetName;
+    public ArrayList<String> readSpecificCategory(String categoryName) throws IOException {
+        if (categoryName==null){categoryName = defaultCategory;}
+        String url = "https://docs.google.com/spreadsheets/d/"+id+"/gviz/tq?tqx=out:csv&sheet="+categoryName;
 
         //If category is already loaded - return words
-        if (words.get(sheetName)!=null){
-            return words.get(sheetName);
+        if (words.get(categoryName)!=null){
+            return words.get(categoryName);
         } //Otherwise - proceed with loading
 
         System.out.println("Getting data from " + url);
@@ -56,12 +58,12 @@ public class SheetReader {
             result.add(splitData[i].toLowerCase());
         }
 
-        words.put(sheetName,result);
+        words.put(categoryName,result);
         return result;
     }
 
 
-    public String[] readCategories() throws IOException{
+    public String[] readCategoryList() throws IOException{
         if (categories!=null){
             return categories;
         }
@@ -86,6 +88,10 @@ public class SheetReader {
     public String[] getCategories(){
         return this.categories;
     }
+    public HashMap<String, ArrayList<String>> getWords() {
+        return words;
+    }
+
 
 
 

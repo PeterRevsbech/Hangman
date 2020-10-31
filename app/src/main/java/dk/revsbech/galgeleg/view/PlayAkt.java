@@ -12,8 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import dk.revsbech.galgeleg.programlogic.ChallengeModeLogic;
-import dk.revsbech.galgeleg.programlogic.HMLogic;
+import dk.revsbech.galgeleg.model.HMLogic;
 import dk.revsbech.galgeleg.R;
 
 

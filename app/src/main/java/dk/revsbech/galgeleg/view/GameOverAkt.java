@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import dk.revsbech.galgeleg.R;
-import dk.revsbech.galgeleg.backend.HSManager;
-import dk.revsbech.galgeleg.programlogic.HMLogic;
 
 public class GameOverAkt extends AppCompatActivity {
 

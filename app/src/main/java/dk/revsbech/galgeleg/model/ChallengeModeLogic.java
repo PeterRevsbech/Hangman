@@ -1,6 +1,4 @@
-package dk.revsbech.galgeleg.programlogic;
-
-import java.io.IOException;
+package dk.revsbech.galgeleg.model;
 
 public class ChallengeModeLogic {
 

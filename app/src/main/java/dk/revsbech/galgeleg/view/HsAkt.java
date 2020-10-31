@@ -6,19 +6,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import dk.revsbech.galgeleg.R;
 import dk.revsbech.galgeleg.backend.HSCategory;
-import dk.revsbech.galgeleg.backend.HSEntry;
 import dk.revsbech.galgeleg.backend.HSManager;
-import dk.revsbech.galgeleg.programlogic.HMLogic;
+import dk.revsbech.galgeleg.model.HMLogic;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
-
-import java.util.ArrayList;
 
 public class HsAkt extends AppCompatActivity implements AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener {
 

@@ -1,4 +1,4 @@
-package dk.revsbech.galgeleg.programlogic;
+package dk.revsbech.galgeleg.model;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -127,7 +127,7 @@ public class HMLogic {
     public void switchCategory(String newCategory){
         loadingDone=false;
         try {
-            wordList = SheetReader.getInstance().readSheet(newCategory);
+            wordList = SheetReader.getInstance().readSpecificCategory(newCategory);
             this.category=newCategory;
         } catch (IOException e){
             e.printStackTrace();
@@ -145,8 +145,8 @@ public class HMLogic {
         SheetReader sr = SheetReader.getInstance();
 
         try{
-            sr.readCategories();
-            wordList =sr.readSheet(null);
+            sr.readCategoryList();
+            wordList =sr.readSpecificCategory(null);
 
         } catch (IOException e){
             e.printStackTrace();

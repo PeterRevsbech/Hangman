@@ -13,8 +13,8 @@ import android.widget.TextView;
 
 import dk.revsbech.galgeleg.R;
 import dk.revsbech.galgeleg.backend.HSManager;
-import dk.revsbech.galgeleg.programlogic.ChallengeModeLogic;
-import dk.revsbech.galgeleg.programlogic.HMLogic;
+import dk.revsbech.galgeleg.model.ChallengeModeLogic;
+import dk.revsbech.galgeleg.model.HMLogic;
 
 public class GameOver_CMfrag extends Fragment implements View.OnClickListener {
 

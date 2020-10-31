@@ -18,8 +18,8 @@ import java.util.concurrent.Executors;
 
 import dk.revsbech.galgeleg.R;
 import dk.revsbech.galgeleg.backend.HSManager;
-import dk.revsbech.galgeleg.programlogic.ChallengeModeLogic;
-import dk.revsbech.galgeleg.programlogic.HMLogic;
+import dk.revsbech.galgeleg.model.ChallengeModeLogic;
+import dk.revsbech.galgeleg.model.HMLogic;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
