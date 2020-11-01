@@ -36,6 +36,7 @@
         android:layout_marginBottom="12dp"
         android:gravity="center"
         android:text="theSecretWord"
+        android:textStyle="bold"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="@+id/play_infoText"
         app:layout_constraintEnd_toEndOf="parent"

@@ -6,10 +6,21 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import dk.revsbech.galgeleg.R;
 
 public class GameWonAkt extends AppCompatActivity {
 
+    MapView mMapView;
+    private GoogleMap googleMap;
     TextView secretWord;
     TextView wrongGuesses;
 
@@ -40,6 +51,7 @@ public class GameWonAkt extends AppCompatActivity {
                     .add(R.id.GameWon_ChallengeModeFL, fragment)  // Empty container in layout
                     .commit();
         }
+
 
 
 
