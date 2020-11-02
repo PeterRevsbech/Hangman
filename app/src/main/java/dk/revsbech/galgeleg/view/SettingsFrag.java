@@ -3,7 +3,6 @@ package dk.revsbech.galgeleg.view;
 
 import dk.revsbech.galgeleg.R;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -54,7 +53,7 @@ public class SettingsFrag extends Fragment implements View.OnClickListener, Adap
         Configuration conf = res.getConfiguration();
         conf.locale = locale;
         res.updateConfiguration(conf, dm);
-        Intent refresh = new Intent(this.getActivity(), MainActivity.class);
+        Intent refresh = new Intent(this.getActivity(), MainAkt.class);
         refresh.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(refresh);
     }

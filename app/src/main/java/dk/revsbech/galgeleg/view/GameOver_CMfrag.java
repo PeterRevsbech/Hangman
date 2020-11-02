@@ -41,7 +41,7 @@ public class GameOver_CMfrag extends Fragment implements View.OnClickListener {
         String streakString = streak+"";
         streakNumberTV.setText(streakString);
 
-        category = HMConfig.getInstance().getCategory();
+        category = HMConfig.getInstance().getCurrentCategory();
 
         //Get HSManager to write to highscore if score made it
         boolean validForHS = HSManager.getInstance().canMakeItOnHs(category,streak,getContext());

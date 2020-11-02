@@ -15,7 +15,7 @@
         <activity android:name=".view.GameWonAkt" />
         <activity android:name=".view.HsAkt" />
         <activity android:name=".view.PlayAkt" />
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".view.MainAkt">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

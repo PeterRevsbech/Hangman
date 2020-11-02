@@ -10,7 +10,7 @@ public class HMConfig {
     ArrayList<String> wordList = new ArrayList<>();
     private boolean loadingDone = false;
     private static HMConfig single_instance =null;
-    private String category = "Default";
+    private String currentCategory = "Default";
 
     private HMConfig() {}
 
@@ -26,15 +26,15 @@ public class HMConfig {
         loadingDone=false;
         try {
             wordList = SheetReader.getInstance().readSpecificCategory(newCategory);
-            this.category=newCategory;
+            this.currentCategory =newCategory;
         } catch (IOException e){
             e.printStackTrace();
         }
         loadingDone=true;
     }
 
-    public String getCategory(){
-        return this.category;
+    public String getCurrentCategory(){
+        return this.currentCategory;
     }
 
     public void initWithNetwork(){

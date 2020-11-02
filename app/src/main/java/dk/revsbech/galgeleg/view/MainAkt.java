@@ -20,9 +20,8 @@ import dk.revsbech.galgeleg.R;
 import dk.revsbech.galgeleg.backend.HSManager;
 import dk.revsbech.galgeleg.model.ChallengeModeLogic;
 import dk.revsbech.galgeleg.model.HMConfig;
-import dk.revsbech.galgeleg.model.HMGame;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+public class MainAkt extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     Button singleGameButton, settingsButton, hsButton, challengeModeButton;
     Spinner categorySpinner;
@@ -62,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String[] categories= HMConfig.getInstance().getCategories();
 
             //Ensure that the cateogires are in the HS
-            HSManager.getInstance().ensureCategories(categories,MainActivity.this);
+            HSManager.getInstance().ensureCategories(categories, MainAkt.this);
 
             // Create an ArrayAdapter using the string array and a default spinner layout
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(
