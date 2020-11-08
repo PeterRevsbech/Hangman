@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Layout;
@@ -14,6 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
 
 import dk.revsbech.galgeleg.model.HMGame;
 import dk.revsbech.galgeleg.R;
@@ -68,6 +71,12 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
 
         //Cheat word Text View
         cheatWordTV = findViewById(R.id.CheatWordTextView);
+
+        //If cheats turned off - cheat button and cheat word should be invisible
+        if (!isCheatsOn()){
+            cheatButton.setVisibility(View.INVISIBLE);
+            cheatWordTV.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override
@@ -209,5 +218,13 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
         builder.show();
 
 
+    }
+
+    boolean isCheatsOn(){
+        SharedPreferences mPrefs = getSharedPreferences("HighScores",MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = mPrefs.getString("cheatsOn", "false");
+        Boolean cheatsOn = gson.fromJson(json, Boolean.class);
+        return cheatsOn;
     }
 }

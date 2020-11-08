@@ -2,8 +2,10 @@ package dk.revsbech.galgeleg.view;
 
 
 import dk.revsbech.galgeleg.R;
+import dk.revsbech.galgeleg.backend.HighScoreList;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -15,16 +17,22 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Switch;
+
 import androidx.fragment.app.Fragment;
 
+import com.google.gson.Gson;
+
 import java.util.Locale;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class SettingsFrag extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     Spinner languageSpinner;
     Locale locale;
     String languageSelected= "da-dk";
     Button saveChangesButton;
-
+    Switch cheatsSwtich;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
@@ -41,6 +49,15 @@ public class SettingsFrag extends Fragment implements View.OnClickListener, Adap
         // Apply the adapter to the spinner
         languageSpinner.setAdapter(adapter);
         languageSpinner.setOnItemSelectedListener(this);
+
+
+        //Setup cheats-switch
+        cheatsSwtich = root.findViewById(R.id.cheatsSwitch);
+        SharedPreferences mPrefs = getActivity().getSharedPreferences("HighScores",MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = mPrefs.getString("cheatsOn", "false");
+        Boolean cheatsOn = gson.fromJson(json, Boolean.class);
+        cheatsSwtich.setChecked(cheatsOn);
 
         return root;
     }
@@ -82,7 +99,20 @@ public class SettingsFrag extends Fragment implements View.OnClickListener, Adap
     public void onClick(View view) {
         if (view ==saveChangesButton){
             System.out.println("Save button pressed");
+            //TODO fix this
+            //Tries to set locale - doesnt work properly
             setLocale(languageSelected);
+
+            //Saves cheat preference to preference manager
+            Boolean cheatPreference = cheatsSwtich.isChecked();
+            SharedPreferences mPrefs = getActivity().getSharedPreferences("HighScores",MODE_PRIVATE);
+            SharedPreferences.Editor prefsEditor = mPrefs.edit();
+            Gson gson = new Gson();
+            String json = gson.toJson(cheatPreference);
+            prefsEditor.putString("cheatsOn", json);
+            prefsEditor.apply();
+
         }
+
     }
 }

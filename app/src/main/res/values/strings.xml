@@ -65,11 +65,13 @@
     <string name="noHsInCategory">There are no highscores in this category yet.</string>
 
 
+
     <!-- Settings-->
     <string-array name="languages_array">
         <item>Dansk</item>
         <item>English</item>
     </string-array>
+    <string name="enablecheats">Enable cheats</string>
 
     <!-- Categories-->
     <string-array name="categories_array">
