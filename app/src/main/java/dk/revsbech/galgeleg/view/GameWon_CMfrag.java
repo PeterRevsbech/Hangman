@@ -1,5 +1,7 @@
 package dk.revsbech.galgeleg.view;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -26,8 +28,7 @@ public class GameWon_CMfrag extends Fragment implements View.OnClickListener {
         View root =inflater.inflate(R.layout.game_won_cmfrag, container, false);
         streakNumberTV = root.findViewById(R.id.WonStreakNumberTV);
 
-        //Increase streak, cause you just won another
-        ChallengeModeLogic.getInstance().increaseStreak();
+       //Get streak number
         String number = ChallengeModeLogic.getInstance().getGamesWonStreak()+"";
         streakNumberTV.setText(number);
 
@@ -50,4 +51,5 @@ public class GameWon_CMfrag extends Fragment implements View.OnClickListener {
             startActivity(i);
         }
     }
+
 }

@@ -58,7 +58,6 @@ public class HsAkt extends AppCompatActivity implements AdapterView.OnItemSelect
                     getString(R.string.noHsInCategory),
                     Toast.LENGTH_SHORT);
             toast.show();
-            return;
         }
         // Create adapter passing in the sample user data
         HSAdapter hsAdapter = new HSAdapter(hsCategory);

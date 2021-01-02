@@ -3,10 +3,15 @@ package dk.revsbech.galgeleg.view;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import dk.revsbech.galgeleg.R;
+import dk.revsbech.galgeleg.model.ChallengeModeLogic;
+import dk.revsbech.galgeleg.model.HMConfig;
 
 public class GameWonAkt extends AppCompatActivity{
 
@@ -41,4 +46,45 @@ public class GameWonAkt extends AppCompatActivity{
 
 
     }
+
+    public void onBackPressed() {
+        //If in challenge-mode
+        if (getIntent().getStringExtra("gameMode").equals("challenge")){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(getString(R.string.exitOrNot));
+            builder.setMessage(String.format(getString(R.string.sureToExitCM2), ChallengeModeLogic.getInstance().getGamesWonStreak()));
+
+            builder.setPositiveButton(getString(R.string.yesSure), new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    Intent i = new Intent(getApplicationContext(), GameOverAkt.class);
+                    i.putExtra("gameMode", "challenge");
+                    i.putExtra("givenUp","true");
+                    i.putExtra("guessedLastWord","true");
+                    //Finish current acitivity
+                    finish();
+                    //Switch to new one
+                    startActivity(i);
+
+                }
+            });
+            builder.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                }
+            });
+
+            builder.show();
+
+
+        } else{
+            //Normal back-press
+            GameWonAkt.super.onBackPressed();
+        }
+
+
+
+    }
+
+
+
+
 }

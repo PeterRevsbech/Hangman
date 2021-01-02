@@ -31,9 +31,13 @@
     <string name="youguessed">You guessed: </string>
     <string name="youWon">You won!</string>
     <string name="youLost">You lost!</string>
+    <string name="youGaveUp">You gave up!</string>
+    <string name="youGaveUpTheWordWas">You gave up! The word was: </string>
     <string name="exitOrNot">Exit game</string>
     <string name="sureToExit">Are you sure you want to exit the game? Your progress will be lost</string>
     <string name="sureToExitCM">Are you sure you want to exit the game? Your streak of %d will be lost</string>
+    <string name="sureToExitCM2">Are you sure you want to exit the game? You will end your current streak of %d.</string>
+    <string name="sureToExitBeforeHS">Are you sure you want to exit before submitting your high score?</string>
 
 
 
@@ -52,9 +56,9 @@
     <string name="nextword">Next Word</string>
 
     <!-- Game Over-->
-    <string name="finishedWithStreak">Your finished with a streak of</string>
+    <string name="finishedWithStreak">You finished with a streak of</string>
     <string name="didntMakeHS">You didn\'t make it to the highscores</string>
-    <string name="madeHs">Your made it to the highscores!f</string>
+    <string name="madeHs">Your made it to the highscores!</string>
     <string name="name">Name</string>
     <string name="writeName">Write your name below</string>
     <string name="submit">Submit</string>

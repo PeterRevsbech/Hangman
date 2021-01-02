@@ -2,15 +2,33 @@ package dk.revsbech.galgeleg.backend;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class HighScoreList {
 
     private HashMap<String, HSCategory> categoryHSMap;
-    private int maxEntriesPrCategory;
+    private final int maxEntriesPrCategory;
 
     public HighScoreList(int maxEntriesPrCategory){
         this.maxEntriesPrCategory = maxEntriesPrCategory;
         this.categoryHSMap = new HashMap<String, HSCategory>();
+    }
+
+    public boolean isEmpty(){
+        //Check if hashmap is empty
+        if (categoryHSMap.isEmpty()){
+            return true;
+        } 
+        
+        //Check if hashmap contains only empty categories
+        for (HSCategory category : categoryHSMap.values()){
+            if (!category.isEmpty()){
+                return false;
+            }
+        }
+
+        //If all were empty - return true
+        return true;
     }
 
 
@@ -55,5 +73,9 @@ public class HighScoreList {
 
     public HSCategory getCategoryList(String category){
         return categoryHSMap.get(category);
+    }
+
+    public HashMap<String, HSCategory> getCategoryHSMap(){
+        return categoryHSMap;
     }
 }

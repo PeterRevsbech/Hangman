@@ -27,11 +27,16 @@
     <string name="play_titletext">Du spiller galgeleg</string>
     <string name="makeguess">Gæt!</string>
     <string name="youguessed">Du gættede: </string>
-    <string name="youWon">Du vandt!!</string>
+    <string name="youWon">Du vandt!</string>
     <string name="youLost">Du tabte!</string>
+    <string name="youGaveUp">Du gav op!</string>
+    <string name="youGaveUpTheWordWas">Du gav op! Ordet var: </string>
     <string name="exitOrNot">Forlad spil</string>
     <string name="sureToExit">Er du sikker på, at du vil forlade spillet? Spillet vil blive tabt.</string>
     <string name="sureToExitCM">Er du sikker på, du vil forlade spillet? Din streak på %d vil blive tabt</string>
+    <string name="sureToExitCM2">Er du sikker på, du vil forlade spillet? Du vil afslutte din nuværende streak på %d.</string>
+    <string name="sureToExitBeforeHS">Er du sikker på, du vil forlade siden inden du indsender din highscore??</string>
+
 
 
     <!-- Settings -->

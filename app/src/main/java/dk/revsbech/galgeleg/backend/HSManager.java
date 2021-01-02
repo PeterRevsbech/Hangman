@@ -67,14 +67,35 @@ public class HSManager {
         prefsEditor.apply();
     }
 
-    //Uses network
     public void ensureCategories(String[] categories,Context context){
         readHSfromPM(context);
         highScoreList.ensureCategories(categories);
+        if (highScoreList.isEmpty()){
+            addDefaultData();
+        }
         saveHStoPM(context);
+    }
+
+    public void addDefaultData(){
+        //Generate som default highscore data
+        String[] names = {"Meredith", "Mark", "Cristina", "Derek", "Alex", "George"};
+        int score;
+        int entries;
+        int nameIndex;
+        for (String category:highScoreList.getCategoryHSMap().keySet()) {
+            entries = (int)(Math.random()*5+3);
+            for (int i = 0; i < entries; i++) {
+                score=(int)(Math.random()*10+1);
+                nameIndex = (int)(Math.random()*names.length);
+                highScoreList.addEntry(category,score,names[nameIndex]);
+            }
+        }
+
+
     }
 
 
 
 
 }
+

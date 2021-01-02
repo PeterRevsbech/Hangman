@@ -18,6 +18,8 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
+import dk.revsbech.galgeleg.model.ChallengeModeLogic;
+import dk.revsbech.galgeleg.model.HMConfig;
 import dk.revsbech.galgeleg.model.HMGame;
 import dk.revsbech.galgeleg.R;
 
@@ -185,10 +187,16 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
         Intent i = new Intent(this, GameOverAkt.class);
         i.putExtra("SecretWord", hmGame.getSecretWord());
         i.putExtra("gameMode", gameMode);
+        i.putExtra("givenUp","false");
+        i.putExtra("guessedLastWord","false");
+
         startActivity(i);
     }
 
     public void gameWon() {
+        if (gameMode.equals("challenge")){
+            ChallengeModeLogic.getInstance().increaseStreak();
+        }
         Intent i = new Intent(this, GameWonAkt.class);
         i.putExtra("SecretWord", hmGame.getSecretWord());
         i.putExtra("NumOfGuesses", hmGame.getNumOfWrongGuesses());
@@ -200,7 +208,8 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.exitOrNot));
         if (gameMode.equals("challenge")){
-            builder.setMessage(R.string.sureToExitCM);
+            int streak = ChallengeModeLogic.getInstance().getGamesWonStreak();
+            builder.setMessage(String.format(getString(R.string.sureToExitCM),streak));
         } else if (gameMode.equals("single")){
             builder.setMessage(R.string.sureToExit);
         }
@@ -208,8 +217,17 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
 
         builder.setPositiveButton(getString(R.string.yesSure), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                PlayAkt.super.onBackPressed();
+                Intent i = new Intent(getApplicationContext(), GameOverAkt.class);
+                i.putExtra("gameMode", gameMode);
+                i.putExtra("givenUp","true");
+                i.putExtra("guessedLastWord","false");
+                i.putExtra("secretWord", hmGame.getSecretWord());
+                //Finish current acitivity
+                finish();
+                //Switch to new one
+                startActivity(i);
             }
+
         });
         builder.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {

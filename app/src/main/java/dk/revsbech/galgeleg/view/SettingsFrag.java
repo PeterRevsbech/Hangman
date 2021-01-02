@@ -21,6 +21,7 @@ import android.widget.Switch;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.gson.Gson;
 
 import java.util.Locale;
@@ -32,7 +33,7 @@ public class SettingsFrag extends Fragment implements View.OnClickListener, Adap
     Locale locale;
     String languageSelected= "da-dk";
     Button saveChangesButton;
-    Switch cheatsSwtich;
+    SwitchMaterial cheatsSwtich, musicSwitch;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
