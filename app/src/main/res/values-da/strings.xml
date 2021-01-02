@@ -44,6 +44,8 @@
     <string name="saveChanges">Gem ændringer</string>
     <string name="lanugage">Sprog</string>
     <string name="enablecheats">Tillad snyd</string>
+    <string name="musicSwitch">Musik</string>
+
 
     <!-- Game Won-->
     <string name="GzText">Tillykke! Du gættede ordet</string>

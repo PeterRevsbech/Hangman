@@ -54,11 +54,18 @@ public class SettingsFrag extends Fragment implements View.OnClickListener, Adap
 
         //Setup cheats-switch
         cheatsSwtich = root.findViewById(R.id.cheatsSwitch);
-        SharedPreferences mPrefs = getActivity().getSharedPreferences("HighScores",MODE_PRIVATE);
+        SharedPreferences mPrefs = getActivity().getSharedPreferences("Preferences",MODE_PRIVATE);
         Gson gson = new Gson();
         String json = mPrefs.getString("cheatsOn", "false");
         Boolean cheatsOn = gson.fromJson(json, Boolean.class);
         cheatsSwtich.setChecked(cheatsOn);
+
+
+        //Setup music switch
+        musicSwitch = root.findViewById(R.id.musicSwitch);
+        json = mPrefs.getString("musicOn", "true");
+        Boolean musicOn = gson.fromJson(json, Boolean.class);
+        musicSwitch.setChecked(musicOn);
 
         return root;
     }
@@ -106,12 +113,26 @@ public class SettingsFrag extends Fragment implements View.OnClickListener, Adap
 
             //Saves cheat preference to preference manager
             Boolean cheatPreference = cheatsSwtich.isChecked();
-            SharedPreferences mPrefs = getActivity().getSharedPreferences("HighScores",MODE_PRIVATE);
+            SharedPreferences mPrefs = getActivity().getSharedPreferences("Preferences",MODE_PRIVATE);
             SharedPreferences.Editor prefsEditor = mPrefs.edit();
             Gson gson = new Gson();
             String json = gson.toJson(cheatPreference);
             prefsEditor.putString("cheatsOn", json);
             prefsEditor.apply();
+
+
+            //Saves music preference to preference manager
+            Boolean musicPreference = musicSwitch.isChecked();
+            json = gson.toJson(musicPreference);
+            prefsEditor.putString("musicOn", json);
+            prefsEditor.apply();
+
+            if (musicPreference){
+                ((MainAkt) getActivity()).playMusic();
+            } else {
+                ((MainAkt) getActivity()).stopMusicService();
+
+            }
 
         }
 

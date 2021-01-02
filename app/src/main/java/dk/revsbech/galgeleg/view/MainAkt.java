@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -75,6 +77,16 @@ public class MainAkt extends AppCompatActivity implements View.OnClickListener, 
                 categorySpinner.setOnItemSelectedListener(this);
             });
         });
+
+        if (isMusicOn()){
+            playMusic();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            playMusic();
+        }
 
 
 
@@ -138,5 +150,44 @@ public class MainAkt extends AppCompatActivity implements View.OnClickListener, 
                     Toast.LENGTH_SHORT);
             toast.show();
         }
+    }
+
+    public void playMusic() {
+        Intent intent = new Intent(MainAkt.this, BackgroundSoundService.class);
+        startService(intent);
+    }
+
+    public void stopMusicService(){
+        Intent stopIntent = new Intent(getBaseContext(),BackgroundSoundService.class);
+        stopIntent.setAction(BackgroundSoundService.ACTION_STOP);
+        stopService(stopIntent);
+    }
+
+    public boolean isMusicOn(){
+        SharedPreferences mPrefs = getSharedPreferences("Preferences",MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = mPrefs.getString("musicOn", "false");
+        Boolean cheatsOn = gson.fromJson(json, Boolean.class);
+        return cheatsOn;
+    }
+
+    @Override
+    protected void onDestroy() {
+        stopMusicService();
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onStop() {
+        stopMusicService();
+        super.onStop();
+    }
+
+    @Override
+    protected void onStart() {
+        if (isMusicOn()) {
+            playMusic();
+        }
+        super.onStart();
     }
 }

@@ -45,6 +45,8 @@
     <string name="language">Language</string>
     <string name="saveChanges">Save changes</string>
     <string name="lanugage">Language</string>
+    <string name="musicSwitch">Music</string>
+
 
     <!-- Game Won-->
     <string name="GzText">Congratulations! You guessed the word</string>
