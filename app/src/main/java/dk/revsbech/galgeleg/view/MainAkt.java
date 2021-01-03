@@ -97,7 +97,6 @@ public class MainAkt extends AppCompatActivity implements View.OnClickListener, 
 
         } else if (view == hsButton){
             Intent i = new Intent(this,HsAkt.class);
-            HMConfig.getInstance().setLeavingMenu(true);
             startActivity(i);
 
         } else if (view == challengeModeButton){
@@ -133,7 +132,6 @@ public class MainAkt extends AppCompatActivity implements View.OnClickListener, 
             if (gameMode.equals("challenge")){
                 ChallengeModeLogic.getInstance().reset();
             }
-            HMConfig.getInstance().setLeavingMenu(true);
             startActivity(i);
         } else { //If it is not done loading
             Toast toast = Toast.makeText(getApplicationContext(),
@@ -165,13 +163,10 @@ public class MainAkt extends AppCompatActivity implements View.OnClickListener, 
 
     @Override
     protected void onStop() {
-        if (HMConfig.getInstance().isLeavingMenu()){
-            //If we're still in the app but no longer in main menu
-            HMConfig.getInstance().setLeavingMenu(false);
-        } else if (HMConfig.getInstance().isRefreshing()){
+        if (HMConfig.getInstance().isRefreshing()){
             //Do nothing yet - isRefreshing will be set false onDestroy()
         } else{
-            //If none of those - stop the music (maybe the app is no longer in foreground)
+            //stop the music (maybe the app is no longer in foreground)
             stopMusicService();
         }
         super.onStop();
