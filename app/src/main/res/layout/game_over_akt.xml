@@ -36,7 +36,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:textColor="@color/black"
-        android:fontFamily="sans-serif-medium"
+        android:fontFamily="@font/orangejuice"
         android:text="SecretWord"
         android:textSize="30sp" />
 

@@ -12,6 +12,7 @@ public class HMConfig {
     private static HMConfig single_instance =null;
     private String currentCategory = "Default";
     private boolean refreshing = false;
+    private boolean leavingMenu = false;
 
     private HMConfig() {}
 
@@ -83,5 +84,11 @@ public class HMConfig {
         this.refreshing = refreshing;
     }
 
+    public boolean isLeavingMenu() {
+        return leavingMenu;
+    }
 
+    public void setLeavingMenu(boolean leavingMenu) {
+        this.leavingMenu = leavingMenu;
+    }
 }
