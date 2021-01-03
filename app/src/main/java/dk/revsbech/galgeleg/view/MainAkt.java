@@ -78,17 +78,6 @@ public class MainAkt extends AppCompatActivity implements View.OnClickListener, 
             });
         });
 
-        if (isMusicOn()){
-            playMusic();
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            playMusic();
-        }
-
-
 
     }
 
@@ -173,13 +162,15 @@ public class MainAkt extends AppCompatActivity implements View.OnClickListener, 
 
     @Override
     protected void onDestroy() {
-        stopMusicService();
         super.onDestroy();
     }
 
     @Override
     protected void onStop() {
-        stopMusicService();
+        if (!HMConfig.getInstance().isRefreshing()){
+            stopMusicService();
+            HMConfig.getInstance().setRefreshing(false);
+        }
         super.onStop();
     }
 
@@ -190,4 +181,6 @@ public class MainAkt extends AppCompatActivity implements View.OnClickListener, 
         }
         super.onStart();
     }
+
+
 }

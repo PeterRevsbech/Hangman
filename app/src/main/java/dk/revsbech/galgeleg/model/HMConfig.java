@@ -11,6 +11,7 @@ public class HMConfig {
     private boolean loadingDone = false;
     private static HMConfig single_instance =null;
     private String currentCategory = "Default";
+    private boolean refreshing = false;
 
     private HMConfig() {}
 
@@ -73,5 +74,14 @@ public class HMConfig {
     public String[] getCategories(){
         return SheetReader.getInstance().getCategories();
     }
+
+    public boolean isRefreshing() {
+        return refreshing;
+    }
+
+    public void setRefreshing(boolean refreshing) {
+        this.refreshing = refreshing;
+    }
+
 
 }

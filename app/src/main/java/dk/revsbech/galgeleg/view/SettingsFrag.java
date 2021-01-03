@@ -3,6 +3,7 @@ package dk.revsbech.galgeleg.view;
 
 import dk.revsbech.galgeleg.R;
 import dk.revsbech.galgeleg.backend.HighScoreList;
+import dk.revsbech.galgeleg.model.HMConfig;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -31,7 +32,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class SettingsFrag extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     Spinner languageSpinner;
     Locale locale;
-    String languageSelected= "da-dk";
+    String languageSelected, currentLanguage;
     Button saveChangesButton;
     SwitchMaterial cheatsSwtich, musicSwitch;
 
@@ -51,6 +52,11 @@ public class SettingsFrag extends Fragment implements View.OnClickListener, Adap
         languageSpinner.setAdapter(adapter);
         languageSpinner.setOnItemSelectedListener(this);
 
+        //Find out which language is currently selected
+        currentLanguage = getResources().getConfiguration().locale.getLanguage();
+        //Select that language in spinner
+        int selectionIndex = (currentLanguage.equals("da")) ? 0 : 1;
+        languageSpinner.setSelection(selectionIndex);
 
         //Setup cheats-switch
         cheatsSwtich = root.findViewById(R.id.cheatsSwitch);
@@ -88,7 +94,7 @@ public class SettingsFrag extends Fragment implements View.OnClickListener, Adap
         String selection = (String) adapterView.getSelectedItem();
 
         if (selection.equals("Dansk")){
-            languageSelected ="da-dk";
+            languageSelected ="da";
             System.out.println("Danish selected");
         } else if (selection.equals("English")){
             languageSelected ="en";
@@ -106,10 +112,16 @@ public class SettingsFrag extends Fragment implements View.OnClickListener, Adap
     @Override
     public void onClick(View view) {
         if (view ==saveChangesButton){
+            boolean refresh = false;
             System.out.println("Save button pressed");
-            //TODO fix this
-            //Tries to set locale - doesnt work properly
-            setLocale(languageSelected);
+
+
+            if (!languageSelected.equals(currentLanguage)){
+                //only set locale if language was changed
+                setLocale(languageSelected);
+                refresh = true;
+            }
+
 
             //Saves cheat preference to preference manager
             Boolean cheatPreference = cheatsSwtich.isChecked();
@@ -127,12 +139,15 @@ public class SettingsFrag extends Fragment implements View.OnClickListener, Adap
             prefsEditor.putString("musicOn", json);
             prefsEditor.apply();
 
+
             if (musicPreference){
                 ((MainAkt) getActivity()).playMusic();
+                HMConfig.getInstance().setRefreshing(refresh);
             } else {
                 ((MainAkt) getActivity()).stopMusicService();
-
             }
+
+
 
         }
 

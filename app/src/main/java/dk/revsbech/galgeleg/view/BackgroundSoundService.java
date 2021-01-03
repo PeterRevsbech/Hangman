@@ -28,8 +28,9 @@ public class BackgroundSoundService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         if(intent.getAction()!=null && intent.getAction().equals(ACTION_STOP)){
             mediaPlayer.stop();
+        } else {
+            mediaPlayer.start();
         }
-        mediaPlayer.start();
         return startId;
     }
     public void onStart(Intent intent, int startId) {
