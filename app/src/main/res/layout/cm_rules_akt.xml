@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.CMRulesAkt"
+    android:orientation="vertical"
+    android:background="@color/design_default_color_background"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="100dp"
+        android:textSize="35sp"
+        android:text="@string/rules"
+        android:textColor="@color/black"
+        >
+    </TextView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+
+        android:textSize="35sp"
+        android:text="@string/cyaOnHs"
+        android:textColor="@color/black"
+        >
+    </TextView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4">
+    </FrameLayout>
+
+
+    <Button
+        android:id="@+id/startCMbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:text="@string/letsGo"
+        style="@style/buttonStyle"
+        android:textSize="25sp"
+        >
+    </Button>
+</LinearLayout>

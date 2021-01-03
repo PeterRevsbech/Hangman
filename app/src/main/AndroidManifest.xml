@@ -11,19 +11,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.GameOverAkt"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity android:name=".view.GameWonAkt"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity android:name=".view.HsAkt"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity android:name=".view.PlayAkt"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity android:name=".view.MainAkt"
+        <activity android:name=".view.CMRulesAkt"></activity>
+        <activity
+            android:name=".view.GameOverAkt"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".view.GameWonAkt"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".view.HsAkt"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".view.PlayAkt"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".view.MainAkt"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,6 +33,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <service android:name=".view.BackgroundSoundService" />
     </application>
 

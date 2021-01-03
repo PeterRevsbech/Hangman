@@ -70,5 +70,10 @@
     <!-- Highscores-->
     <string name="noHsInCategory">Der er endnu ingen highscores i denne kategori.</string>
 
+    <!-- CM_rules-->
+    <string name="letsGo">Begynd!</string>
+    <string name="rules">Hvor mange ord kan du gætte inden du taber?</string>
+    <string name="cyaOnHs">Vi ses på highscoren!</string>
+
 
 </resources>

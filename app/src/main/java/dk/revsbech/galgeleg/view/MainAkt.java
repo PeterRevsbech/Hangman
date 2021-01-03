@@ -127,12 +127,14 @@ public class MainAkt extends AppCompatActivity implements View.OnClickListener, 
         if (HMConfig.getInstance().isLoadingDone()){
 
             //Switch activity
-            Intent i = new Intent(this,PlayAkt.class);
-            i.setFlags(i.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY); // Don't add to backstack
-            i.putExtra("gameMode",gameMode);
+            Intent i;
             if (gameMode.equals("challenge")){
-                ChallengeModeLogic.getInstance().reset();
+                i = new Intent(this,CMRulesAkt.class);
+            } else {
+                i = new Intent(this,PlayAkt.class);
+                i.putExtra("gameMode",gameMode);
             }
+            i.setFlags(i.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY); // Don't add to backstack
             startActivity(i);
             overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
         } else { //If it is not done loading

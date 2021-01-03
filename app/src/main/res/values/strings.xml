@@ -8,7 +8,6 @@
     <string name="waitForLoad">Loading - Wait a minute</string>
 
 
-
     <!-- Frontpage-->
     <string name="app_name">s183760 Hangman</string>
     <string name="settings">Settings</string>
@@ -40,7 +39,6 @@
     <string name="sureToExitBeforeHS">Are you sure you want to exit before submitting your high score?</string>
 
 
-
     <!-- Settings -->
     <string name="language">Language</string>
     <string name="saveChanges">Save changes</string>
@@ -66,10 +64,8 @@
     <string name="submit">Submit</string>
 
 
-
     <!-- Highscores-->
     <string name="noHsInCategory">There are no highscores in this category yet.</string>
-
 
 
     <!-- Settings-->
@@ -84,6 +80,11 @@
         <item>Mixed danish words</item>
         <item>Danish cities</item>
     </string-array>
+
+    <!-- CM_rules-->
+    <string name="letsGo">Let\'s Go!</string>
+    <string name="rules">How many words can you guess before you lose?</string>
+    <string name="cyaOnHs">See if you can make it to the highscores!</string>
 
 
 
