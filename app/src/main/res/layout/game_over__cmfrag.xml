@@ -8,18 +8,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        >
 
         <TextView
             android:id="@+id/GameOverYourStreakTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:text="@string/finishedWithStreak" />
 
         <TextView
             android:id="@+id/GameOverStreakNumberTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:textSize="40sp"
             android:gravity="center"
             android:text="5" />
@@ -28,12 +35,14 @@
             android:id="@+id/MadeItHS"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:text="You made it to the HS" />
 
         <TextView
             android:id="@+id/writeNameTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:text="@string/writeName" />
 
         <LinearLayout
@@ -43,16 +52,20 @@
 
             <EditText
                 android:id="@+id/writeNameTextEdit"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="2"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:textColor="@color/black"
                 android:text="@string/name" />
 
             <Button
                 android:id="@+id/sendToHSButton"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                style="@style/buttonStyle"
                 android:text="@string/submit" />
         </LinearLayout>
     </LinearLayout>
