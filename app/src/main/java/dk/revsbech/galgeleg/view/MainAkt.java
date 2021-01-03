@@ -68,7 +68,7 @@ public class MainAkt extends AppCompatActivity implements View.OnClickListener, 
 
             // Create an ArrayAdapter using the string array and a default spinner layout
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                    this,android.R.layout.simple_spinner_item, categories);
+                    this,android.R.layout.simple_selectable_list_item, categories);
             // Specify the layout to use when the list of choices appears
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             // Apply the adapter to the spinner
@@ -127,7 +127,7 @@ public class MainAkt extends AppCompatActivity implements View.OnClickListener, 
 
             //Switch activity
             Intent i = new Intent(this,PlayAkt.class);
-            i.setFlags(i.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY); // Adds the FLAG_ACTIVITY_NO_HISTORY flag
+            i.setFlags(i.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY); // Don't add to backstack
             i.putExtra("gameMode",gameMode);
             if (gameMode.equals("challenge")){
                 ChallengeModeLogic.getInstance().reset();

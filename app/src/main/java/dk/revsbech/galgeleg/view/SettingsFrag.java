@@ -45,7 +45,7 @@ public class SettingsFrag extends Fragment implements View.OnClickListener, Adap
         languageSpinner = (Spinner) root.findViewById(R.id.languageSpinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(),
-                R.array.languages_array, android.R.layout.simple_spinner_item);
+                R.array.languages_array, android.R.layout.simple_selectable_list_item);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner

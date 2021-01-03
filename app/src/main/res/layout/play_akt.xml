@@ -27,7 +27,9 @@
         android:text="@string/makeguess"
         app:layout_constraintBaseline_toBaselineOf="@+id/play_guessTextEdit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/play_guessTextEdit" />
+        app:layout_constraintStart_toEndOf="@+id/play_guessTextEdit"
+        style="@style/buttonStyle"
+        />
 
     <TextView
         android:id="@+id/play_WordView"
@@ -92,5 +94,7 @@
         android:layout_marginBottom="9dp"
         android:text="Cheat"
         app:layout_constraintBottom_toTopOf="@+id/CheatWordTextView"
-        app:layout_constraintEnd_toEndOf="@+id/play_guessTextEdit" />
+        app:layout_constraintEnd_toEndOf="@+id/play_guessTextEdit"
+        style="@style/buttonStyle"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

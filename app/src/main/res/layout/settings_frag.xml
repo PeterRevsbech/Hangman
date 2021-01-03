@@ -24,34 +24,51 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-        <Button
-            android:id="@+id/Settings_SaveButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Save/Gem" />
 
-        <TextView
-            android:id="@+id/SelLanguageTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/language" />
+        <LinearLayout
+            style="@style/settingsStyle">
+            <TextView
+                android:id="@+id/SelLanguageTV"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/language"
+                style="@style/settingsTextStyle"
+                />
 
-        <Spinner
-            android:id="@+id/languageSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <Spinner
+                android:id="@+id/languageSpinner"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                style="@style/settingsTextStyle"
+                />
+
+        </LinearLayout>
 
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/cheatsSwitch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/enablecheats" />
+            android:text="@string/enablecheats"
+            style="@style/settingsStyle"
+            />
 
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/musicSwitch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/musicSwitch" />
+            android:text="@string/musicSwitch"
+            style="@style/settingsStyle"
+            />
+
+        <Button
+            android:id="@+id/Settings_SaveButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save/Gem"
+            style="@style/buttonStyle"
+            />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
