@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
+            android:textColor="@color/black"
             android:gravity="center"
             android:text="@string/yourstreakis" />
 
@@ -24,6 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="40sp"
+            android:textColor="@color/black"
             android:gravity="center"
             android:fontFamily="sans-serif-medium"
             android:text="5" />
@@ -32,6 +34,8 @@
             android:id="@+id/NextWordButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/nextword" />
+            android:text="@string/nextword"
+            style="@style/buttonStyle"
+            />
     </LinearLayout>
 </FrameLayout>
