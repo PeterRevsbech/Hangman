@@ -98,6 +98,7 @@ public class MainAkt extends AppCompatActivity implements View.OnClickListener, 
         } else if (view == hsButton){
             Intent i = new Intent(this,HsAkt.class);
             startActivity(i);
+            overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
 
         } else if (view == challengeModeButton){
             startGameIfReady("challenge");
@@ -133,6 +134,7 @@ public class MainAkt extends AppCompatActivity implements View.OnClickListener, 
                 ChallengeModeLogic.getInstance().reset();
             }
             startActivity(i);
+            overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
         } else { //If it is not done loading
             Toast toast = Toast.makeText(getApplicationContext(),
                     getString(R.string.waitForLoad),

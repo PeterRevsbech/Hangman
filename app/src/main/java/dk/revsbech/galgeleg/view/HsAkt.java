@@ -77,4 +77,10 @@ public class HsAkt extends AppCompatActivity implements AdapterView.OnItemSelect
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
     }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
+    }
 }

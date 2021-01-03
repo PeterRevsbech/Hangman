@@ -49,6 +49,8 @@ public class GameWon_CMfrag extends Fragment implements View.OnClickListener {
             i.putExtra("gameMode","challenge");
             getActivity().finish();
             startActivity(i);
+            getActivity().overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+
         }
     }
 

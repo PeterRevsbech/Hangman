@@ -191,6 +191,8 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
         i.putExtra("guessedLastWord","false");
 
         startActivity(i);
+        overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
+
     }
 
     public void gameWon() {
@@ -202,6 +204,8 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
         i.putExtra("NumOfGuesses", hmGame.getNumOfWrongGuesses());
         i.putExtra("gameMode", gameMode);
         startActivity(i);
+        overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+
     }
 
     public void onBackPressed() {
@@ -226,6 +230,7 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
                 finish();
                 //Switch to new one
                 startActivity(i);
+                overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
             }
 
         });
