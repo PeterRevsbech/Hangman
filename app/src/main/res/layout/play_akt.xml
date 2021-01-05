@@ -8,72 +8,46 @@
     android:background="@drawable/wrong0"
     tools:context=".view.PlayAkt">
 
-    <TextView
-        android:id="@+id/play_infoText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="41dp"
-        android:layout_marginLeft="41dp"
-        android:layout_marginBottom="8dp"
-        android:text="Some Message-Text"
-        app:layout_constraintBottom_toTopOf="@+id/play_guessButton"
-        app:layout_constraintStart_toStartOf="@+id/play_WordView" />
-
-
-    <Button
-        android:id="@+id/play_guessButton"
-        style="@style/buttonStyle"
-        android:layout_width="110dp"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="50dp"
-        android:text="@string/makeguess"
-        app:layout_constraintBaseline_toBaselineOf="@+id/play_guessTextEdit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/play_guessTextEdit" />
 
     <TextView
         android:id="@+id/play_WordView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="15dp"
+        android:fontFamily="@font/orangejuice"
         android:gravity="center"
         android:text="theSecretWord"
-        android:textSize="32sp"
-        android:fontFamily="@font/orangejuice"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/play_infoText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/play_guessTextEdit"
-        android:layout_width="150sp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginEnd="9dp"
-        android:layout_marginRight="9dp"
-
-        android:layout_marginBottom="58dp"
-        android:ems="10"
-        android:hint="@string/yourGuess"
-        android:inputType="textFilter"
-        android:maxLength="1"
-        app:layout_constraintBottom_toTopOf="@+id/CheatButton"
-        app:layout_constraintEnd_toStartOf="@+id/play_guessButton"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/play_guessesText"
-        android:layout_width="wrap_content"
-        android:layout_height="44dp"
-        android:text="[a,b,c]"
-        android:textSize="25sp"
-        android:fontFamily="@font/orangejuice"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toTopOf="@+id/play_infoText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CheatButton" />
+
+    <TextView
+        android:id="@+id/play_infoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginLeft="37dp"
+        android:layout_marginBottom="14dp"
+        android:text="Some Message-Text"
+        app:layout_constraintBottom_toTopOf="@+id/letterGridView"
+        app:layout_constraintStart_toStartOf="@+id/play_WordView"
+        app:layout_constraintTop_toBottomOf="@+id/play_WordView" />
+
+    <Button
+        android:id="@+id/CheatButton"
+        style="@style/buttonStyle"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="196dp"
+        android:layout_marginEnd="33dp"
+        android:layout_marginRight="33dp"
+        android:layout_marginBottom="155dp"
+        android:text="Cheat"
+        app:layout_constraintBottom_toTopOf="@+id/play_WordView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -82,27 +56,27 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="9dp"
         android:layout_marginLeft="9dp"
-        android:layout_marginBottom="85dp"
+        android:layout_marginTop="41dp"
         android:text="CheatWord"
         android:textColor="@color/black"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/CheatButton" />
+        app:layout_constraintStart_toStartOf="@+id/CheatButton"
+        app:layout_constraintTop_toTopOf="@+id/CheatButton" />
 
-    <Button
-        android:id="@+id/CheatButton"
-        style="@style/buttonStyle"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="130dp"
-        android:layout_marginLeft="130dp"
-        android:layout_marginTop="568dp"
-        android:layout_marginEnd="131dp"
-        android:layout_marginRight="131dp"
-        android:layout_marginBottom="115dp"
-        android:text="Cheat"
+    <GridView
+        android:id="@+id/letterGridView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginLeft="34dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginRight="34dp"
+        android:layout_marginBottom="16dp"
+        android:footerDividersEnabled="false"
+        android:numColumns="6"
+        android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/play_infoText" />
 </androidx.constraintlayout.widget.ConstraintLayout>

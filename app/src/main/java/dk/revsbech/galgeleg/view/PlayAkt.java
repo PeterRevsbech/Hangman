@@ -1,39 +1,39 @@
 package dk.revsbech.galgeleg.view;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.GridView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 
 import dk.revsbech.galgeleg.model.ChallengeModeLogic;
-import dk.revsbech.galgeleg.model.HMConfig;
 import dk.revsbech.galgeleg.model.HMGame;
 import dk.revsbech.galgeleg.R;
 
 
 public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
 
-    Button guessButton, cheatButton;
+    Button cheatButton;
     HMGame hmGame;
     TextView wordView;
     TextView info;
-    EditText inputField;
     TextView guesses;
     TextView cheatWordTV;
     String gameMode;
+    //TODO DELETE THIS LINE-------------------------------------------------------------------------------------------
+    GridView simpleGrid;
+    int letterImgs[] = {R.drawable.letter0,R.drawable.letter1,R.drawable.letter2,R.drawable.letter3,R.drawable.letter4,R.drawable.letter5,R.drawable.letter6,R.drawable.letter7,R.drawable.letter8,R.drawable.letter9,R.drawable.letter10,R.drawable.letter11,R.drawable.letter12,R.drawable.letter13,R.drawable.letter14,R.drawable.letter15,R.drawable.letter16,R.drawable.letter17,R.drawable.letter18,R.drawable.letter19,R.drawable.letter20,R.drawable.letter21,R.drawable.letter22,R.drawable.letter23,R.drawable.letter24,R.drawable.letter25,R.drawable.letter26,R.drawable.letter27,R.drawable.letter28};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,21 +47,10 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
         // Make new HMGame object
         hmGame = new HMGame();
 
-        //guess button
-        guessButton = findViewById(R.id.play_guessButton);
-        guessButton.setOnClickListener(this);
-
-        //Input field
-        inputField = findViewById(R.id.play_guessTextEdit);
-        inputField.setOnClickListener(this);
 
         //Word view
         wordView = findViewById(R.id.play_WordView);
         wordView.setText(hmGame.getVisibleWord());
-
-        //Guess list
-        guesses = findViewById(R.id.play_guessesText);
-        guesses.setText(hmGame.getUsedLetters().toString());
 
         ///Info text
         info = findViewById(R.id.play_infoText);
@@ -79,49 +68,61 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
             cheatButton.setVisibility(View.INVISIBLE);
             cheatWordTV.setVisibility(View.INVISIBLE);
         }
+
+        //TODO DELETE THIS LINE-------------------------------------------------------------------------------------------
+        simpleGrid = (GridView) findViewById(R.id.letterGridView); // init GridView
+        // Create an object of CustomAdapter and set Adapter to GirdView
+        GridViewAdapter gridViewAdapter = new GridViewAdapter(getApplicationContext(), letterImgs);
+        simpleGrid.setAdapter(gridViewAdapter);
+        // implement setOnItemClickListener event on GridView
+        simpleGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String guess;
+                if (position==26){
+                    guess="æ";
+                } else if (position==27){
+                    guess="ø";
+                } else if (position==28){
+                    guess="å";
+                } else{
+                    guess = ""+(char) (position + 97);
+                }
+                //Checks if guess is valid
+                validateGuess(guess);
+
+                //If guess was vaild - make guess
+                hmGame.guessLetter(guess);
+                if (hmGame.isLastGuessCorrect()) {
+                    wordView.setText(hmGame.getVisibleWord());
+                } else {
+                    updateNoose();
+                }
+
+                //In any case - hide the clicked letter
+                view.setVisibility(View.INVISIBLE);
+
+                //If game is won
+                if (hmGame.isGameWon()) {
+                    gameWon();
+                } else
+                    //If game is lost
+                    if (hmGame.isGameLost()) {
+                        gameOver();
+                    } else {
+                        updateGuessList();
+                    }
+
+
+            }
+        });
+
+
     }
 
     @Override
     public void onClick(View view) {
-        if (view == guessButton) {
-            String unprocessedGuess = inputField.getText().toString();
-            if (unprocessedGuess.length() == 0) {
-                return;
-            }
-            String guess = unprocessedGuess.toLowerCase().substring(0, 1);
-            displayMsg(getText(R.string.youguessed) + " " + guess);
-            inputField.setText("");
-
-
-            //Checks if guess is valid
-            String invalidMsg = validateGuess(guess);
-            //If guess is invalid - display and return
-            if (invalidMsg != null) {
-                displayMsg(invalidMsg);
-                return;
-            }
-
-            //If guess was vaild - make guess
-            hmGame.guessLetter(guess);
-            if (hmGame.isLastGuessCorrect()) {
-                wordView.setText(hmGame.getVisibleWord());
-            } else {
-                updateNoose();
-            }
-
-            //If game is won
-            if (hmGame.isGameWon()) {
-                gameWon();
-            } else
-                //If game is lost
-                if (hmGame.isGameLost()) {
-                    gameOver();
-                } else {
-                    updateGuessList();
-                }
-
-
-        } else if (view == cheatButton) {
+        if (view == cheatButton) {
             cheatWordTV.setText(hmGame.getSecretWord());
         }
     }
@@ -239,8 +240,6 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
             }
         });
         builder.show();
-
-
     }
 
     boolean isCheatsOn(){
