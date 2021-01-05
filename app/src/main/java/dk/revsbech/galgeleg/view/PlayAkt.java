@@ -7,6 +7,11 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Layout;
@@ -24,7 +29,7 @@ import dk.revsbech.galgeleg.model.HMGame;
 import dk.revsbech.galgeleg.R;
 
 
-public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
+public class PlayAkt extends AppCompatActivity implements View.OnClickListener, SensorEventListener {
 
     Button guessButton, cheatButton;
     HMGame hmGame;
@@ -35,10 +40,15 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
     TextView cheatWordTV;
     String gameMode;
 
+    SensorManager sensorManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.play_akt);
+
+        //Set sensorManager
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
         //Set gamemode
         gameMode = getIntent().getStringExtra("gameMode");
@@ -195,6 +205,17 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        int hyppighed = SensorManager.SENSOR_DELAY_NORMAL;
+
+        Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        sensorManager.registerListener(this,sensor,hyppighed);
+
+    }
+
     public void gameWon() {
         if (gameMode.equals("challenge")){
             ChallengeModeLogic.getInstance().increaseStreak();
@@ -249,5 +270,47 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
         String json = mPrefs.getString("cheatsOn", "false");
         Boolean cheatsOn = gson.fromJson(json, Boolean.class);
         return cheatsOn;
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        int sensortype = event.sensor.getType();
+
+        if (sensortype == Sensor.TYPE_ACCELEROMETER) {
+            // Tjek om det er 3 * normal tyngdeaccelerationen - se http://da.wikipedia.org/wiki/Tyngdeacceleration
+            double sum = Math.abs(event.values[0]) + Math.abs(event.values[1]) + Math.abs(event.values[2]);
+            if (sum > 3 * SensorManager.GRAVITY_EARTH) {
+                doSomething();
+            }
+        }
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        sensorManager.unregisterListener(this);
+    }
+
+    public void doSomething(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("YOOOOOOOOOOOOO");
+        builder.setMessage("HEY YO");
+
+        builder.setPositiveButton(getString(R.string.yesSure), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+               }
+
+        });
+        builder.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+            }
+        });
+        builder.show();
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
     }
 }

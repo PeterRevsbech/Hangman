@@ -39,8 +39,8 @@
         android:textColor="@color/black"
         android:fontFamily="@font/orangejuice"
         android:textSize="30sp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="30dp"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
         />
 
     <TextView
