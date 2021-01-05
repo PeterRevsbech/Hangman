@@ -179,7 +179,10 @@ public class MainAkt extends AppCompatActivity implements View.OnClickListener, 
     @Override
     protected void onDestroy() {
         if (!HMConfig.getInstance().isRefreshing()){
+            //If MainAkt is closed normally - stop the music
             stopMusicService();
+        } else{
+            //If MainAkt was refreshing due to lanugage change - dont stop the music
             HMConfig.getInstance().setRefreshing(false);
         }
         super.onDestroy();
