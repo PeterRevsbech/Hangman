@@ -22,7 +22,7 @@ public class GameWonAkt extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_won_akt);
 
-        String secretWordString = getIntent().getStringExtra("SecretWord");
+        String secretWordString = getIntent().getStringExtra("SecretWord").toUpperCase();
         secretWord=findViewById(R.id.SecretWordTextView);
         secretWord.setText(secretWordString);
 

@@ -29,7 +29,6 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
     TextView info;
     TextView cheatWordTV;
     String gameMode;
-    //TODO DELETE THIS LINE-------------------------------------------------------------------------------------------
     GridView simpleGrid;
     int letterImgs[] = {R.drawable.letter0,R.drawable.letter1,R.drawable.letter2,R.drawable.letter3,R.drawable.letter4,R.drawable.letter5,R.drawable.letter6,R.drawable.letter7,R.drawable.letter8,R.drawable.letter9,R.drawable.letter10,R.drawable.letter11,R.drawable.letter12,R.drawable.letter13,R.drawable.letter14,R.drawable.letter15,R.drawable.letter16,R.drawable.letter17,R.drawable.letter18,R.drawable.letter19,R.drawable.letter20,R.drawable.letter21,R.drawable.letter22,R.drawable.letter23,R.drawable.letter24,R.drawable.letter25,R.drawable.letter26,R.drawable.letter27,R.drawable.letter28};
 
@@ -68,7 +67,7 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
             cheatWordTV.setVisibility(View.INVISIBLE);
         }
 
-        //TODO DELETE THIS LINE-------------------------------------------------------------------------------------------
+        //GridView setup
         simpleGrid = (GridView) findViewById(R.id.letterGridView); // init GridView
         // Create an object of CustomAdapter and set Adapter to GirdView
         GridViewAdapter gridViewAdapter = new GridViewAdapter(getApplicationContext(), letterImgs);
@@ -77,6 +76,7 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
         simpleGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //Onclick on letter
                 String guess;
                 if (position==26){
                     guess="æ";
@@ -90,10 +90,13 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
                 //Checks if guess is valid
                 validateGuess(guess);
 
+                //Display message
+                displayMsg(getString(R.string.youguessed) + " " + guess.toUpperCase());
+
                 //If guess was vaild - make guess
                 hmGame.guessLetter(guess);
                 if (hmGame.isLastGuessCorrect()) {
-                    wordView.setText(hmGame.getVisibleWord());
+                    wordView.setText(hmGame.getVisibleWord().toUpperCase());
                 } else {
                     updateNoose();
                 }
@@ -120,7 +123,7 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if (view == cheatButton) {
-            cheatWordTV.setText(hmGame.getSecretWord());
+            cheatWordTV.setText(hmGame.getSecretWord().toUpperCase());
         }
     }
 
@@ -237,7 +240,7 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
     }
 
     boolean isCheatsOn(){
-        SharedPreferences mPrefs = getSharedPreferences("HighScores",MODE_PRIVATE);
+        SharedPreferences mPrefs = getSharedPreferences("Preferences",MODE_PRIVATE);
         Gson gson = new Gson();
         String json = mPrefs.getString("cheatsOn", "false");
         Boolean cheatsOn = gson.fromJson(json, Boolean.class);

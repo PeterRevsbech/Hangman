@@ -45,7 +45,7 @@ public class GameOverAkt extends AppCompatActivity {
             headerTV.setText(getString(R.string.youGaveUpTheWordWas));
 
             //Tell player what secret word was
-            String secretWordString = getIntent().getStringExtra("secretWord");
+            String secretWordString = getIntent().getStringExtra("secretWord").toUpperCase();
             secretWordTV.setText(secretWordString);
 
         } else if (givenUp && guessedLastWord){ //Player chose to exit after winning
