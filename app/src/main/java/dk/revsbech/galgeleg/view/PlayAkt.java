@@ -27,7 +27,6 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
     HMGame hmGame;
     TextView wordView;
     TextView info;
-    TextView guesses;
     TextView cheatWordTV;
     String gameMode;
     //TODO DELETE THIS LINE-------------------------------------------------------------------------------------------
@@ -109,8 +108,6 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
                     //If game is lost
                     if (hmGame.isGameLost()) {
                         gameOver();
-                    } else {
-                        updateGuessList();
                     }
 
 
@@ -127,9 +124,6 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void updateGuessList() {
-        guesses.setText(hmGame.getUsedLetters().toString());
-    }
 
     public void displayMsg(String msg) {
         info.setText(msg);
