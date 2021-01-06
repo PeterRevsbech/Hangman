@@ -211,7 +211,7 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
         builder.setTitle(getString(R.string.exitOrNot));
         if (gameMode.equals("challenge")){
             int streak = ChallengeModeLogic.getInstance().getGamesWonStreak();
-            builder.setMessage(String.format(getString(R.string.sureToExitCM),streak));
+            builder.setMessage(String.format(getString(R.string.sureToExitCM2),streak));
         } else if (gameMode.equals("single")){
             builder.setMessage(R.string.sureToExit);
         }
