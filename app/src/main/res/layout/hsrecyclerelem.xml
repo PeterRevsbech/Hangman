@@ -13,27 +13,27 @@
     <TextView
         android:id="@+id/HSListName"
         android:textSize="25sp"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="40sp"
-        android:layout_weight="1"
+        android:layout_weight="1.5"
         android:textColor="@color/black"
         android:text="Player" />
 
     <TextView
         android:id="@+id/HSListScore"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="25sp"
-        android:layout_weight="1"
+        android:layout_weight="0.5"
         android:textColor="@color/black"
         android:text="5" />
 
     <TextView
         android:id="@+id/HSListTime"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="15sp"
-        android:layout_weight="0.5"
+        android:layout_weight="1.5"
         android:text="20/10/2020 13:45"
         android:textColor="@color/black"
         />

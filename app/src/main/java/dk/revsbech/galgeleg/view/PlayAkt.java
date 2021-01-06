@@ -49,6 +49,14 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
         //Word view
         wordView = findViewById(R.id.play_WordView);
         wordView.setText(hmGame.getVisibleWord());
+        if (hmGame.getSecretWord().length()>20){
+            wordView.setTextSize(20);
+        } else if (hmGame.getSecretWord().length()>15){
+            wordView.setTextSize(30);
+        } else if (hmGame.getSecretWord().length()>10){
+            wordView.setTextSize(40);
+        }
+
 
         ///Info text
         info = findViewById(R.id.play_infoText);
@@ -60,6 +68,7 @@ public class PlayAkt extends AppCompatActivity implements View.OnClickListener {
 
         //Cheat word Text View
         cheatWordTV = findViewById(R.id.CheatWordTextView);
+        cheatWordTV.setText("");
 
         //If cheats turned off - cheat button and cheat word should be invisible
         if (!isCheatsOn()){
