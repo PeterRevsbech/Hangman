@@ -13,16 +13,16 @@
         android:id="@+id/play_WordView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="49dp"
         android:fontFamily="@font/orangejuice"
         android:gravity="center"
         android:text="theSecretWord"
         android:textColor="@color/black"
         android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/play_infoText"
+        app:layout_constraintBottom_toTopOf="@+id/letterGridView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CheatButton" />
+        app:layout_constraintTop_toBottomOf="@+id/CheatWordTextView" />
 
     <TextView
         android:id="@+id/play_infoText"
@@ -30,23 +30,23 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginLeft="36dp"
+        android:layout_marginTop="469dp"
         android:layout_marginBottom="14dp"
         android:text="Some Message-Text"
         app:layout_constraintBottom_toTopOf="@+id/letterGridView"
         app:layout_constraintStart_toStartOf="@+id/play_WordView"
-        app:layout_constraintTop_toBottomOf="@+id/play_WordView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/CheatButton"
         style="@style/buttonStyle"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="196dp"
-        android:layout_marginEnd="33dp"
-        android:layout_marginRight="33dp"
-        android:layout_marginBottom="155dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:text="Cheat"
-        app:layout_constraintBottom_toTopOf="@+id/play_WordView"
+        app:layout_constraintBottom_toTopOf="@+id/CheatWordTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -56,21 +56,22 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="9dp"
         android:layout_marginLeft="9dp"
-        android:layout_marginTop="41dp"
+        android:layout_marginBottom="301dp"
         android:text="CheatWord"
         android:textColor="@color/black"
         android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/play_WordView"
         app:layout_constraintStart_toStartOf="@+id/CheatButton"
-        app:layout_constraintTop_toTopOf="@+id/CheatButton" />
+        app:layout_constraintTop_toBottomOf="@+id/CheatButton" />
 
     <GridView
         android:id="@+id/letterGridView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="34dp"
-        android:layout_marginLeft="34dp"
-        android:layout_marginEnd="34dp"
-        android:layout_marginRight="34dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginLeft="33dp"
+        android:layout_marginEnd="33dp"
+        android:layout_marginRight="33dp"
         android:layout_marginBottom="16dp"
         android:footerDividersEnabled="false"
         android:numColumns="6"
